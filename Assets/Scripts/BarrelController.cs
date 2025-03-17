@@ -8,6 +8,9 @@ public class DonkeyKongController : MonoBehaviour
     public SphereCollider coll;
     public Transform player, barrelContainer;
 
+    public GameObject barrelPrefab;
+    public Transform spawnPoint;
+
     public float pickUpRange;
     public float dropForwardForce, dropUpwardForce;
     public bool equipped;
@@ -61,7 +64,7 @@ public class DonkeyKongController : MonoBehaviour
 
         // Make barrel a child of the Donkey Kong
         transform.SetParent(barrelContainer);
-        
+
         transform.localPosition = Vector3.zero;
         transform.localRotation = Quaternion.Euler(Vector3.zero);
         transform.localScale = Vector3.one;
@@ -83,15 +86,33 @@ public class DonkeyKongController : MonoBehaviour
         rb.isKinematic = false;
         coll.isTrigger = false;
 
-        rb.linearVelocity = player.right*dropForwardForce+Vector3.up*dropUpwardForce;
+        rb.linearVelocity = player.right * dropForwardForce + Vector3.up * dropUpwardForce;
 
         barrelScript.enabled = false;
     }
 
-    private IEnumerator PerformActionAfterDelay(){
-        canPerformAction=false;
+    private IEnumerator PerformActionAfterDelay()
+    {
+        canPerformAction = false;
         yield return new WaitForSeconds(timeBetweenActions);
-        canPerformAction=true;
+        InstantiateNewBarrel();
+        canPerformAction = true;
+    }
+
+    private void InstantiateNewBarrel()
+    {
+        // Create a new barrel instance at the spawn point
+        GameObject newBarrel = Instantiate(barrelPrefab, spawnPoint.position, spawnPoint.rotation);
+
+        // Ensure the new barrel has the correct components and references
+        DonkeyKongController newBarrelController = newBarrel.GetComponent<DonkeyKongController>();
+        if (newBarrelController != null)
+        {
+            newBarrelController.player = player;
+            newBarrelController.barrelContainer = barrelContainer;
+            newBarrelController.barrelPrefab = barrelPrefab;
+            newBarrelController.spawnPoint = spawnPoint;
+        }
     }
 
 }
