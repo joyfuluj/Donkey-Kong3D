@@ -13,11 +13,11 @@ GameObject:
   - component: {fileID: 3348691758279028011}
   - component: {fileID: 1445704696567632369}
   - component: {fileID: 6925790764011021724}
-  - component: {fileID: 8101320260752549055}
   - component: {fileID: 5409706983083449645}
+  - component: {fileID: -5683679013008223878}
   m_Layer: 0
   m_Name: Barrel
-  m_TagString: Untagged
+  m_TagString: Barrel
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -105,7 +105,7 @@ SphereCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -138,19 +138,6 @@ Rigidbody:
   m_Interpolate: 2
   m_Constraints: 0
   m_CollisionDetection: 3
---- !u!114 &8101320260752549055
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2809244371734162988}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e1ad55d711dec40149d548de9ee4ace4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 50
 --- !u!114 &5409706983083449645
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -163,12 +150,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 48cba5dd73c864ea48adbc71faa4dfb3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  barrelScript: {fileID: 8101320260752549055}
+  barrelScript: {fileID: -5683679013008223878}
   rb: {fileID: 6925790764011021724}
   coll: {fileID: 1445704696567632369}
   player: {fileID: 0}
   barrelContainer: {fileID: 0}
+  barrelPrefab: {fileID: 0}
+  spawnPoint: {fileID: 0}
   pickUpRange: 4
   dropForwardForce: 5
   dropUpwardForce: 7
   equipped: 1
+--- !u!114 &-5683679013008223878
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2809244371734162988}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 236e855d0c68f4b94b2c37452b889f69, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
