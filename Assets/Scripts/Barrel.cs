@@ -5,8 +5,7 @@ public class Barrel : MonoBehaviour
 {
     private Rigidbody rigid;
     private bool isRolling = false; // Flag to track if the barrel is rolling
-    public float moveSpeed = 5f;
-    public float fallThresholdY = -17f; // Y position threshold to destroy the barrel
+    public float moveSpeed = 7f;
     private Vector3 direction;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -15,15 +14,6 @@ public class Barrel : MonoBehaviour
         rigid = GetComponent<Rigidbody>();
     }
 
-    void Update()
-    {
-
-        if (Mathf.Abs(transform.position.y - fallThresholdY) < 2.0f)
-        {
-            Debug.Log("Barrel has fallen off. Destroying it...");
-            Destroy(gameObject); // Destroy the barrel
-        }
-    }
 
     private void OnCollisionEnter(Collision collision)
     {
