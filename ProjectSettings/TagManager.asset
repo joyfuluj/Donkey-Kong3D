@@ -5,6 +5,11 @@ TagManager:
   serializedVersion: 3
   tags:
   - Ground
+  - Ladder
+  - Barrel
+  - GroundOne
+  - SideWall
+  - Mario
   layers:
   - Default
   - TransparentFX
