@@ -6,11 +6,15 @@ public class PlayerController : MonoBehaviour
     public float moveSpeed = 5f;  // Speed for moving left and right
     public float jumpForce = 5f;  // Force applied when jumping
     private bool isGrounded;      // Check if Mario is on the ground
+    private Vector3 originalPosition;
+
     private bool canClimb = false;
     private Ladder ladder = null;
     void Start()
     {
         rb = GetComponent<Rigidbody>();  // Get the Rigidbody component
+        //store Mario's original position
+        originalPosition= gameObject.transform.position;
     }
 
     void Update()
@@ -58,6 +62,10 @@ public class PlayerController : MonoBehaviour
         {
             isGrounded = false;
         }
+    }
+
+    public void ResetPosition(){
+        gameObject.transform.position=originalPosition;
     }
     public void setLadder(Ladder ladder){
         Debug.Log("Ladder set ");

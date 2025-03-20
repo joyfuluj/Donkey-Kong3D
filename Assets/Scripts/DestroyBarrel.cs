@@ -9,5 +9,8 @@ public class DestroyBarrel : MonoBehaviour
             Debug.Log("Destorying barrel");
             Destroy(collision.gameObject);
         }
+        if(collision.gameObject.CompareTag("Mario")){
+            GameManager.Instance.RemoveLife();
+        }
     }
 }
