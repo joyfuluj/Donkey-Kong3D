@@ -11,7 +11,7 @@ public class Ladder : MonoBehaviour
     private void OnTriggerEnter(Collider collider){
         Debug.Log("Ladder trigger entered");
         Debug.Log(collider.gameObject.tag);
-        if(collider.gameObject.tag == "Player"){
+        if(collider.gameObject.tag == "Mario"){
             Debug.Log("Player entered ladder");
             PlayerController player=collider.gameObject.GetComponent<PlayerController>();
             onPlayerEnter(player);
@@ -22,7 +22,7 @@ public class Ladder : MonoBehaviour
     public void OnTriggerExit(Collider collider){
         Debug.Log("Ladder trigger exited");
         Debug.Log(collider.gameObject.tag);
-        if(collider.gameObject.tag == "Player"){
+        if(collider.gameObject.tag == "Mario"){
             Debug.Log("Player exited ladder");
             PlayerController player=collider.gameObject.GetComponent<PlayerController>();
             onPlayerExit(player);
