@@ -8,7 +8,7 @@ public class GameManager : SingletonMonoBehavior<GameManager>
     [SerializeField] private GameObject[] hearts;
     [SerializeField] private TextMeshProUGUI gameOver;
 
-    [SerializeField] private MarioMovement mario; //referring to the mario character
+    [SerializeField] private PlayerController mario; //referring to the mario character
     [SerializeField] private Barrel barrel;
     private void OnEnable()
     {
