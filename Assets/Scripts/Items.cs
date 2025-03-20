@@ -12,7 +12,7 @@ public class Items : MonoBehaviour
         if (other.gameObject.CompareTag("Mario"))
         {
             OnItemCollected.Invoke();
-            transform.localScale *= scaleMultiplier;
+            other.transform.localScale *= scaleMultiplier;
             Destroy(gameObject);
         }
     }
