@@ -2,21 +2,40 @@ using UnityEngine;
 
 public class Ladder : MonoBehaviour
 {
+    public Transform bottom;
+    public Transform top;
+    public void Start(){
+        bottom = transform.Find("Bottom");
+        top = transform.Find("Top");
+    }
     private void OnTriggerEnter(Collider collider){
+        Debug.Log("Ladder trigger entered");
+        Debug.Log(collider.gameObject.tag);
         if(collider.gameObject.tag == "Player"){
-            onPlayerEnter(collider.gameObject.GetComponent<PlayerController>());
+            Debug.Log("Player entered ladder");
+            PlayerController player=collider.gameObject.GetComponent<PlayerController>();
+            onPlayerEnter(player);
+            player.setLadder(this);
         }
     
     }
     public void OnTriggerExit(Collider collider){
+        Debug.Log("Ladder trigger exited");
+        Debug.Log(collider.gameObject.tag);
         if(collider.gameObject.tag == "Player"){
-            onPlayerExit(collider.gameObject.GetComponent<PlayerController>());
+            Debug.Log("Player exited ladder");
+            PlayerController player=collider.gameObject.GetComponent<PlayerController>();
+            onPlayerExit(player);
+            player.setLadder(null);
         }
     }
-    public onPlayerEnter(PlayerController player){
-        player.canClimb(true);
+    public void onPlayerEnter(PlayerController player){
+        player.setCanClimb(true);
+        Debug.Log("Player can climb");
+        
     }
-    public onPlayerExit(PlayerController player){
-        player.canClimb(false);
+    public void onPlayerExit(PlayerController player){
+        player.setCanClimb(false);
     }
+
 }

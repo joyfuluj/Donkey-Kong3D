@@ -34,4 +34,12 @@ public class InputManager : MonoBehaviour
     {
         return Input.GetKeyDown(KeyCode.Space); // Use KeyDown for single press
     }
+    public bool GetUpPressed()
+    {
+        return Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow);
+    }
+    public bool GetDownPressed()
+    {
+        return Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow);
+    }
 }

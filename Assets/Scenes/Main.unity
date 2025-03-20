@@ -1796,8 +1796,8 @@ GameObject:
   - component: {fileID: 1507790941}
   - component: {fileID: 1507790942}
   m_Layer: 0
-  m_Name: Mario
-  m_TagString: Untagged
+  m_Name: Player
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1887,7 +1887,7 @@ Transform:
   m_GameObject: {fileID: 1507790936}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -18.67, y: -11.222366, z: 0.01}
+  m_LocalPosition: {x: 12.57, y: -10.61, z: -0.08}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1945,10 +1945,6 @@ PrefabInstance:
     - target: {fileID: 461728231843972467, guid: 7638c7c29b76b4bae9ce37e8fea1979c, type: 3}
       propertyPath: m_Name
       value: Ladder
-      objectReference: {fileID: 0}
-    - target: {fileID: 1402622318916149235, guid: 7638c7c29b76b4bae9ce37e8fea1979c, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 5.7219887
       objectReference: {fileID: 0}
     - target: {fileID: 1402622318916149235, guid: 7638c7c29b76b4bae9ce37e8fea1979c, type: 3}
       propertyPath: m_LocalPosition.x
