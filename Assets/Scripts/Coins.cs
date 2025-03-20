@@ -1,16 +1,16 @@
 using UnityEngine;
 using UnityEngine.Events;
 
-public class Items : MonoBehaviour
+public class Coins : MonoBehaviour
 {
     public float speed;
     public int scoreValue = 10;
-    public UnityEvent OnItemCollected = new UnityEvent();
+    public UnityEvent OnCoinCollected = new UnityEvent();
     void OnCollisionEnter(Collision other)
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            OnItemCollected.Invoke();
+            OnCoinCollected.Invoke();
             Destroy(gameObject);
         }
     }
@@ -20,3 +20,4 @@ public class Items : MonoBehaviour
         transform.Rotate(Vector3.up, speed * Time.deltaTime);
     }
 }
+
