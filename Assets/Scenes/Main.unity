@@ -2287,8 +2287,8 @@ GameObject:
   - component: {fileID: 1507790941}
   - component: {fileID: 1507790942}
   m_Layer: 0
-  m_Name: Mario
-  m_TagString: Mario
+  m_Name: Player
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2436,10 +2436,6 @@ PrefabInstance:
     - target: {fileID: 461728231843972467, guid: 7638c7c29b76b4bae9ce37e8fea1979c, type: 3}
       propertyPath: m_Name
       value: Ladder
-      objectReference: {fileID: 0}
-    - target: {fileID: 1402622318916149235, guid: 7638c7c29b76b4bae9ce37e8fea1979c, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 5.7219887
       objectReference: {fileID: 0}
     - target: {fileID: 1402622318916149235, guid: 7638c7c29b76b4bae9ce37e8fea1979c, type: 3}
       propertyPath: m_LocalPosition.x
@@ -3528,6 +3524,10 @@ PrefabInstance:
     - target: {fileID: 3110404379207033572, guid: a381d2b2c93594709ac7bc7828942700, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8086152358508057030, guid: a381d2b2c93594709ac7bc7828942700, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
