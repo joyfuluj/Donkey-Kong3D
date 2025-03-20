@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class DonkeyKongController : MonoBehaviour
 {
-    public Items barrelScript;
+    public Barrel barrelScript;
     public Rigidbody rb;
     public SphereCollider coll;
     public Transform player, barrelContainer;

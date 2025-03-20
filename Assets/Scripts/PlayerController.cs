@@ -46,7 +46,7 @@ public class PlayerController : MonoBehaviour
     // Detect if Mario is grounded
     void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.CompareTag("Ground"))
+        if (collision.gameObject.CompareTag("Ground")||collision.gameObject.CompareTag("GroundOne"))
         {
             isGrounded = true;
         }
@@ -54,7 +54,7 @@ public class PlayerController : MonoBehaviour
 
     void OnCollisionExit(Collision collision)
     {
-        if (collision.gameObject.CompareTag("Ground"))
+        if (collision.gameObject.CompareTag("Ground")||collision.gameObject.CompareTag("GroundOne"))
         {
             isGrounded = false;
         }
