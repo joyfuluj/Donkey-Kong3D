@@ -8,7 +8,7 @@ public class Coins : MonoBehaviour
     public UnityEvent OnCoinCollected = new UnityEvent();
     void OnCollisionEnter(Collision other)
     {
-        if (other.gameObject.CompareTag("Player"))
+        if (other.gameObject.CompareTag("Mario"))
         {
             OnCoinCollected.Invoke();
             Destroy(gameObject);
@@ -18,6 +18,7 @@ public class Coins : MonoBehaviour
     void Update()
     {
         transform.Rotate(Vector3.up, speed * Time.deltaTime);
+        // Debug.Log("Rotation: " + transform.rotation.eulerAngles);
     }
 }
 

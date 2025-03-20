@@ -5,12 +5,14 @@ public class Items : MonoBehaviour
 {
     public float speed;
     public int scoreValue = 10;
+    public float scaleMultiplier = 2.5f;
     public UnityEvent OnItemCollected = new UnityEvent();
     void OnCollisionEnter(Collision other)
     {
-        if (other.gameObject.CompareTag("Player"))
+        if (other.gameObject.CompareTag("Mario"))
         {
             OnItemCollected.Invoke();
+            transform.localScale *= scaleMultiplier;
             Destroy(gameObject);
         }
     }
