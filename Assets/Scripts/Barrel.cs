@@ -40,9 +40,8 @@ public class Barrel : MonoBehaviour
         if (collision.gameObject.CompareTag("Mario"))
         {
             //Kill Mario
-            Destroy(collision.gameObject);
-
             //Implement game over or lives
+            GameManager.Instance.RemoveLife();  
         }
 
     }
