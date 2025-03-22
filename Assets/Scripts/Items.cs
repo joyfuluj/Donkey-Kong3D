@@ -19,7 +19,7 @@ public class Items : MonoBehaviour
         // Check if the player hit the bottom of the cube
         if (Vector3.Dot(contact.normal, Vector3.up) > 0.9f) // Normal is pointing upwards
         {
-            Debug.Log("Player collided with the bottom of the cube!");
+            // Debug.Log("Player collided with the bottom of the cube!");
             if (other.gameObject.CompareTag("Mario"))
             {
                 OnItemCollected?.Invoke();
@@ -37,7 +37,7 @@ public class Items : MonoBehaviour
 
         private IEnumerator ScalePlayerOverTime(Transform player, Rigidbody playerRb, float duration, float playerScale, float itemScale)
     {
-        Debug.Log("Started scaling...");
+        // Debug.Log("Started scaling...");
         Vector3 playerStartScale = player.localScale;
         Vector3 playerEndScale = playerStartScale * playerScale;
         Vector3 itemStartScale = transform.localScale;
@@ -53,7 +53,7 @@ public class Items : MonoBehaviour
         }
 
         player.localScale = playerEndScale;
-        Debug.Log("Final Scale: " + player.localScale.ToString());
+        // Debug.Log("Final Scale: " + player.localScale.ToString());
 
         if (playerRb != null)
         {
@@ -61,7 +61,6 @@ public class Items : MonoBehaviour
             playerRb.constraints = RigidbodyConstraints.FreezeRotation; // Keep rotation frozen
         }
 
-        // Disable the item instead of destroying it
         // Hide the item instead of deactivating it
         GetComponent<Renderer>().enabled = false;
         GetComponent<Collider>().enabled = false;
@@ -77,7 +76,7 @@ public class Items : MonoBehaviour
 
     private IEnumerator ShrinkPlayerOverTime(Transform player, float duration, Vector3 originalScale)
 {
-    Debug.Log("Starting to shrink back...");
+    // Debug.Log("Starting to shrink back...");
     Vector3 startScale = player.localScale; // Capture the current scale before shrinking
     float elapsed = 0f;
 
@@ -89,7 +88,7 @@ public class Items : MonoBehaviour
     }
 
     player.localScale = originalScale; // Ensure it's exactly back to normal size
-    Debug.Log("Mario is back to normal size: " + player.localScale.ToString());
+    // Debug.Log("Mario is back to normal size: " + player.localScale.ToString());
 }
 
 }
