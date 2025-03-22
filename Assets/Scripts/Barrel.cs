@@ -39,9 +39,15 @@ public class Barrel : MonoBehaviour
         //check if barrel collides over mario
         if (collision.gameObject.CompareTag("Mario"))
         {
-            //Kill Mario
-            //Implement game over or lives
-            GameManager.Instance.RemoveLife();  
+            Vector3 marioScale = collision.transform.localScale;
+
+            if (marioScale.x == 1 || marioScale.y == 1 || marioScale.z == 1) // Checking if Mario has grown
+            {
+                GameManager.Instance.RemoveLife();
+            }
+            else{
+                Destroy(gameObject);
+            }
         }
 
     }
