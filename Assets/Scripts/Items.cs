@@ -35,56 +35,61 @@ public class Items : MonoBehaviour
         }
     }
 
-    private IEnumerator ScalePlayerOverTime(Transform player, Rigidbody playerRb, float duration, float playerScale, float itemScale)
-{
-    // Debug.Log("Started scaling...");
-    Vector3 playerStartScale = player.localScale;
-    Vector3 playerEndScale = playerStartScale * playerScale;
-    Vector3 itemStartScale = transform.localScale;
-    Vector3 itemEndScale = itemStartScale * itemScale;
-
-    float elapsed = 0f;
-    while (elapsed < duration)
+        private IEnumerator ScalePlayerOverTime(Transform player, Rigidbody playerRb, float duration, float playerScale, float itemScale)
     {
-        player.localScale = Vector3.Lerp(playerStartScale, playerEndScale, elapsed / duration);
-        transform.localScale = Vector3.Lerp(itemStartScale, itemEndScale, elapsed / duration);
-        elapsed += Time.deltaTime;
-        yield return null;
-    }
+        Debug.Log("Started scaling...");
+        Vector3 playerStartScale = player.localScale;
+        Vector3 playerEndScale = playerStartScale * playerScale;
+        Vector3 itemStartScale = transform.localScale;
+        Vector3 itemEndScale = itemStartScale * itemScale;
 
-    player.localScale = playerEndScale;
-    // Debug.Log("Final Scale: " + player.localScale.ToString());
-
-    if (playerRb != null)
-    {
-        playerRb.constraints = RigidbodyConstraints.None;
-        playerRb.constraints = RigidbodyConstraints.FreezeRotation; // Keep rotation frozen
-    }
-
-    // Disable the item instead of destroying it
-    gameObject.SetActive(false);
-
-    // Wait before shrinking back
-    yield return new WaitForSeconds(shrinkDelay);
-    yield return StartCoroutine(ShrinkPlayerOverTime(player, duration, playerStartScale));
-
-    Destroy(gameObject);
-}
-
-    private IEnumerator ShrinkPlayerOverTime(Transform player, float duration, Vector3 originalScale)
-    {
-        // Debug.Log("Starting to shrink back...");
-        Vector3 currentScale = player.localScale;
         float elapsed = 0f;
-
         while (elapsed < duration)
         {
-            player.localScale = Vector3.Lerp(currentScale, originalScale, elapsed / duration);
+            player.localScale = Vector3.Lerp(playerStartScale, playerEndScale, elapsed / duration);
+            transform.localScale = Vector3.Lerp(itemStartScale, itemEndScale, elapsed / duration);
             elapsed += Time.deltaTime;
             yield return null;
         }
 
-        player.localScale = originalScale;
-        // Debug.Log("Mario is back to normal size: " + player.localScale.ToString());
+        player.localScale = playerEndScale;
+        Debug.Log("Final Scale: " + player.localScale.ToString());
+
+        if (playerRb != null)
+        {
+            playerRb.constraints = RigidbodyConstraints.None;
+            playerRb.constraints = RigidbodyConstraints.FreezeRotation; // Keep rotation frozen
+        }
+
+        // Disable the item instead of destroying it
+        // Hide the item instead of deactivating it
+        GetComponent<Renderer>().enabled = false;
+        GetComponent<Collider>().enabled = false;
+
+
+        // Wait before shrinking back
+        yield return new WaitForSeconds(shrinkDelay);
+        yield return StartCoroutine(ShrinkPlayerOverTime(player, duration, playerStartScale));
+
+        // Now it's safe to destroy the object after shrinking is done
+        Destroy(gameObject);
     }
+
+    private IEnumerator ShrinkPlayerOverTime(Transform player, float duration, Vector3 originalScale)
+{
+    Debug.Log("Starting to shrink back...");
+    Vector3 startScale = player.localScale; // Capture the current scale before shrinking
+    float elapsed = 0f;
+
+    while (elapsed < duration)
+    {
+        player.localScale = Vector3.Lerp(startScale, originalScale, elapsed / duration);
+        elapsed += Time.deltaTime;
+        yield return null;
+    }
+
+    player.localScale = originalScale; // Ensure it's exactly back to normal size
+    Debug.Log("Mario is back to normal size: " + player.localScale.ToString());
+}
+
 }
