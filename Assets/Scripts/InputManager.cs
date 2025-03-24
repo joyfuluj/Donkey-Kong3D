@@ -32,10 +32,12 @@ public class InputManager : MonoBehaviour
 
     public bool GetJumpPressed()
     {
+        
         return Input.GetKeyDown(KeyCode.Space); // Use KeyDown for single press
     }
     public bool GetUpPressed()
     {
+        
         return Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow);
     }
     public bool GetDownPressed()

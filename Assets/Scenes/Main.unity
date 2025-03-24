@@ -135,6 +135,10 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Ground
       objectReference: {fileID: 0}
+    - target: {fileID: 5536914254307116598, guid: 127b315e6aa0f467cb06c6e6940c74f6, type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6429693295531935323, guid: 127b315e6aa0f467cb06c6e6940c74f6, type: 3}
       propertyPath: m_LocalScale.z
       value: 43.05625
@@ -1932,7 +1936,7 @@ GameObject:
   - component: {fileID: 1097722609}
   m_Layer: 0
   m_Name: Grounds
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2468,6 +2472,10 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Ground
       objectReference: {fileID: 0}
+    - target: {fileID: 5536914254307116598, guid: 127b315e6aa0f467cb06c6e6940c74f6, type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6429693295531935323, guid: 127b315e6aa0f467cb06c6e6940c74f6, type: 3}
       propertyPath: m_LocalScale.x
       value: 1.8000004
@@ -2742,6 +2750,10 @@ PrefabInstance:
     - target: {fileID: 1092974303195514218, guid: 127b315e6aa0f467cb06c6e6940c74f6, type: 3}
       propertyPath: m_TagString
       value: Ground
+      objectReference: {fileID: 0}
+    - target: {fileID: 5536914254307116598, guid: 127b315e6aa0f467cb06c6e6940c74f6, type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6429693295531935323, guid: 127b315e6aa0f467cb06c6e6940c74f6, type: 3}
       propertyPath: m_LocalScale.x
@@ -3621,7 +3633,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1092974303195514218, guid: 127b315e6aa0f467cb06c6e6940c74f6, type: 3}
       propertyPath: m_TagString
-      value: GroundOne
+      value: Ground
+      objectReference: {fileID: 0}
+    - target: {fileID: 5536914254307116598, guid: 127b315e6aa0f467cb06c6e6940c74f6, type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6429693295531935323, guid: 127b315e6aa0f467cb06c6e6940c74f6, type: 3}
       propertyPath: m_LocalScale.x
@@ -4219,6 +4235,10 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Ground
       objectReference: {fileID: 0}
+    - target: {fileID: 5536914254307116598, guid: 127b315e6aa0f467cb06c6e6940c74f6, type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6429693295531935323, guid: 127b315e6aa0f467cb06c6e6940c74f6, type: 3}
       propertyPath: m_LocalPosition.x
       value: 4.08
@@ -4284,6 +4304,10 @@ PrefabInstance:
     - target: {fileID: 1092974303195514218, guid: 127b315e6aa0f467cb06c6e6940c74f6, type: 3}
       propertyPath: m_TagString
       value: Ground
+      objectReference: {fileID: 0}
+    - target: {fileID: 5536914254307116598, guid: 127b315e6aa0f467cb06c6e6940c74f6, type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6429693295531935323, guid: 127b315e6aa0f467cb06c6e6940c74f6, type: 3}
       propertyPath: m_LocalScale.y
@@ -4752,10 +4776,6 @@ PrefabInstance:
     - target: {fileID: 3110404379207033572, guid: a381d2b2c93594709ac7bc7828942700, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8086152358508057030, guid: a381d2b2c93594709ac7bc7828942700, type: 3}
-      propertyPath: m_IsTrigger
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

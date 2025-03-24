@@ -4,7 +4,7 @@ public class PlayerController : MonoBehaviour
 {
     private Rigidbody rb;
     public float moveSpeed = 5f;  // Speed for moving left and right
-    public float jumpForce = 5f;  // Force applied when jumping
+    public float jumpForce = 10f;  // Force applied when jumping
     private bool isGrounded;      // Check if Mario is on the ground
     private Vector3 originalPosition;
 
@@ -50,16 +50,18 @@ public class PlayerController : MonoBehaviour
     // Detect if Mario is grounded
     void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.CompareTag("Ground")||collision.gameObject.CompareTag("GroundOne"))
+        if (collision.gameObject.CompareTag("Ground"))
         {
+            Debug.Log("Grounded, can jump");
             isGrounded = true;
         }
     }
 
     void OnCollisionExit(Collision collision)
     {
-        if (collision.gameObject.CompareTag("Ground")||collision.gameObject.CompareTag("GroundOne"))
+        if (collision.gameObject.CompareTag("Ground"))
         {
+            Debug.Log("Not grounded, can't jump");
             isGrounded = false;
         }
     }
