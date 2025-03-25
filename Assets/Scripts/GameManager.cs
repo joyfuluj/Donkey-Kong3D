@@ -7,6 +7,8 @@ public class GameManager : SingletonMonoBehavior<GameManager>
     [SerializeField] private int maxLives = 3;
     [SerializeField] private GameObject[] hearts;
     [SerializeField] private TextMeshProUGUI gameOver;
+    public TextMeshProUGUI scoreText; // Text for updating coin count
+    private int score = 0;
 
     [SerializeField] private PlayerController mario; //referring to the mario character
     [SerializeField] private Barrel barrel;
@@ -16,6 +18,23 @@ public class GameManager : SingletonMonoBehavior<GameManager>
     private float currentTime; // Tracks the current time left in the countdown
 
     private bool isMarioBig=false;
+
+    void Start()
+    {
+        UpdateScoreUI();
+    }
+
+    void UpdateScoreUI(){
+        if(scoreText!=null){
+            scoreText.text=""+score;
+        }
+    }
+
+    public void AddScore(){
+        score++;
+        UpdateScoreUI();
+    }
+
     private void OnEnable()
     {
         //Update the array of hearts
