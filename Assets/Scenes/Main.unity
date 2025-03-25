@@ -3661,7 +3661,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sfxSource: {fileID: 1737256125}
   AmbienceSource: {fileID: 2011008605}
-  introClip: {fileID: 0}
+  introClip: {fileID: 8300000, guid: ca2def199e1f84719b784f2e75ac95e1, type: 3}
   ambientClip_level1: {fileID: 8300000, guid: a421ddb5156b64cc58e7b40f172ab75c, type: 3}
   ambientClip_level2: {fileID: 8300000, guid: 45cba13dd87784f198b52097ba607b14, type: 3}
   winClip: {fileID: 8300000, guid: e557ba6146b124ce0a16d1c4c55dacd4, type: 3}
