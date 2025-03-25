@@ -105,7 +105,6 @@ public class DonkeyKongController : MonoBehaviour
 
         // Randomize the time delay for the next action
         timeBetweenActions = GetRandomTime();
-        Debug.Log("TimeBetweenActions:"+ timeBetweenActions);
     }
 
     private void InstantiateNewBarrel()
