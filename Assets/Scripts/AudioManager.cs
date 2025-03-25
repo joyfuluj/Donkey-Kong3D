@@ -15,14 +15,18 @@ public class AudioManager : MonoBehaviour
     public AudioClip ambientClip_level2;
     public AudioClip winClip;
     public AudioClip gameOverClip;
-    public AudioClip walkClip;
+    public AudioClip kongClip;
+
     public AudioClip jumpClip;
     public AudioClip loseLifeClip;
     public AudioClip jumpOverClip; 
     public AudioClip getCoinClip; 
+    public AudioClip getItemClip; 
     public AudioClip powerUpClip; 
     public AudioClip powerDownClip; 
     public AudioClip stageClearClip; 
+    public AudioClip pauseClip; 
+
 
 
     private void Awake()

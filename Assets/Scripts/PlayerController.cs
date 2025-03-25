@@ -29,10 +29,6 @@ public class PlayerController : MonoBehaviour
         {
             moveDirection = 1f;   // Move right
         }
-        if(AudioManager.instance != null)
-        {
-            AudioManager.instance.PlaySound(AudioManager.instance.walkClip);
-        }
         Vector3 movement = new Vector3(moveDirection * moveSpeed, rb.linearVelocity.y, 0);  // Move along X-axis only
         rb.linearVelocity = movement;  // Apply velocity directly
 

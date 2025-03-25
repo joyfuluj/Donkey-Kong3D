@@ -3661,19 +3661,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sfxSource: {fileID: 1737256125}
   AmbienceSource: {fileID: 2011008605}
-  introClip: {fileID: 8300000, guid: ca2def199e1f84719b784f2e75ac95e1, type: 3}
+  introClip: {fileID: 8300000, guid: c8002feacac824352bfd1ce296331c75, type: 3}
   ambientClip_level1: {fileID: 8300000, guid: a421ddb5156b64cc58e7b40f172ab75c, type: 3}
   ambientClip_level2: {fileID: 8300000, guid: 45cba13dd87784f198b52097ba607b14, type: 3}
   winClip: {fileID: 8300000, guid: e557ba6146b124ce0a16d1c4c55dacd4, type: 3}
-  gameOverClip: {fileID: 8300000, guid: b7a52a3b8134d4822a231d077097cfa8, type: 3}
-  walkClip: {fileID: 8300000, guid: 3798f85f8c162488aad4f68b16f5734e, type: 3}
+  gameOverClip: {fileID: 8300000, guid: daac9b935ac344969b10596f8c016a30, type: 3}
+  kongClip: {fileID: 8300000, guid: e4e998d4dc6ac47fe874c2b98c35eaa4, type: 3}
   jumpClip: {fileID: 8300000, guid: d0ad5fd04347e4ca4b32261ac6999a0a, type: 3}
   loseLifeClip: {fileID: 8300000, guid: 4706f8000827642f883938676de76091, type: 3}
   jumpOverClip: {fileID: 8300000, guid: afa42fe42d9964a2abeb9d668365a6e0, type: 3}
   getCoinClip: {fileID: 8300000, guid: 20b6f68d3270d4c1e99d6e938f820767, type: 3}
+  getItemClip: {fileID: 8300000, guid: d850671d5442c40e2ba763650dd1a1c9, type: 3}
   powerUpClip: {fileID: 8300000, guid: 2eb9145a615ba44868f741e62d4c60f0, type: 3}
   powerDownClip: {fileID: 8300000, guid: f1e449c0ba2a247d2b21b7b4345eedd3, type: 3}
   stageClearClip: {fileID: 8300000, guid: 1ccaaab075f5a452885d016e3dc08578, type: 3}
+  pauseClip: {fileID: 8300000, guid: cc1b2ec68674644bc97718d621c276ba, type: 3}
 --- !u!4 &1521432926
 Transform:
   m_ObjectHideFlags: 0

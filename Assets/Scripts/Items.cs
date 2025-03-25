@@ -22,6 +22,10 @@ public class Items : MonoBehaviour
             // Debug.Log("Player collided with the bottom of the cube!");
             if (other.gameObject.CompareTag("Mario"))
             {
+                if(AudioManager.instance != null)
+                {
+                    AudioManager.instance.PlaySound(AudioManager.instance.getItemClip);
+                }
                 OnItemCollected?.Invoke();
 
                 Rigidbody playerRb = other.gameObject.GetComponent<Rigidbody>();
@@ -40,6 +44,7 @@ public class Items : MonoBehaviour
         // Debug.Log("Started scaling...");
         if(AudioManager.instance != null)
         {
+            yield return new WaitForSeconds(0.8f);
             AudioManager.instance.PlaySound(AudioManager.instance.powerUpClip);
         }
         Vector3 playerStartScale = player.localScale;

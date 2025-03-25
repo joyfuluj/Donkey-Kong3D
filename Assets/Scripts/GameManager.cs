@@ -73,6 +73,7 @@ public class GameManager : SingletonMonoBehavior<GameManager>
         if(AudioManager.instance != null && maxLives != 1)
         {
             AudioManager.instance.PlaySound(AudioManager.instance.loseLifeClip);
+            AudioManager.instance.PlaySound(AudioManager.instance.kongClip);
         }
         maxLives--;
         UpdateHeartsUI();
