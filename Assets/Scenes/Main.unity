@@ -3667,9 +3667,10 @@ MonoBehaviour:
   winClip: {fileID: 8300000, guid: e557ba6146b124ce0a16d1c4c55dacd4, type: 3}
   gameOverClip: {fileID: 8300000, guid: daac9b935ac344969b10596f8c016a30, type: 3}
   kongClip: {fileID: 8300000, guid: e4e998d4dc6ac47fe874c2b98c35eaa4, type: 3}
+  climbClip: {fileID: 8300000, guid: 202c1fe239fbb4b5fae05c203e8bdcc7, type: 3}
   jumpClip: {fileID: 8300000, guid: d0ad5fd04347e4ca4b32261ac6999a0a, type: 3}
   loseLifeClip: {fileID: 8300000, guid: 4706f8000827642f883938676de76091, type: 3}
-  jumpOverClip: {fileID: 8300000, guid: afa42fe42d9964a2abeb9d668365a6e0, type: 3}
+  jumpOverClip: {fileID: 8300000, guid: 38c91f4ae33024fa2bf7755f310f30aa, type: 3}
   getCoinClip: {fileID: 8300000, guid: 20b6f68d3270d4c1e99d6e938f820767, type: 3}
   getItemClip: {fileID: 8300000, guid: d850671d5442c40e2ba763650dd1a1c9, type: 3}
   powerUpClip: {fileID: 8300000, guid: 2eb9145a615ba44868f741e62d4c60f0, type: 3}

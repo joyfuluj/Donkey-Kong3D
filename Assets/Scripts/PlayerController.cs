@@ -80,10 +80,14 @@ public class PlayerController : MonoBehaviour
         Debug.Log("Can climb set to " + canClimb);
         this.canClimb= canClimb;
     }
-    public void climbUpLadder(){
+    public  void climbUpLadder(){
+        if(AudioManager.instance != null)
+        {
+            AudioManager.instance.PlaySound(AudioManager.instance.climbClip);
+        }
         Debug.Log("Climbing up ladder");
-       Transform upPosition = ladder.top;
-       this.transform.position = upPosition.position;
+        Transform upPosition = ladder.top;
+        this.transform.position = upPosition.position;
 
     }
     public void climbDownLadder(){

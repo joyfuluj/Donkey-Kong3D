@@ -16,7 +16,7 @@ public class AudioManager : MonoBehaviour
     public AudioClip winClip;
     public AudioClip gameOverClip;
     public AudioClip kongClip;
-
+    public AudioClip climbClip;
     public AudioClip jumpClip;
     public AudioClip loseLifeClip;
     public AudioClip jumpOverClip; 
