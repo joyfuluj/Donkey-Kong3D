@@ -38,6 +38,10 @@ public class Items : MonoBehaviour
         private IEnumerator ScalePlayerOverTime(Transform player, Rigidbody playerRb, float duration, float playerScale, float itemScale)
     {
         // Debug.Log("Started scaling...");
+        if(AudioManager.instance != null)
+        {
+            AudioManager.instance.PlaySound(AudioManager.instance.powerUpClip);
+        }
         Vector3 playerStartScale = player.localScale;
         Vector3 playerEndScale = playerStartScale * playerScale;
         Vector3 itemStartScale = transform.localScale;
@@ -77,6 +81,10 @@ public class Items : MonoBehaviour
     private IEnumerator ShrinkPlayerOverTime(Transform player, float duration, Vector3 originalScale)
 {
     // Debug.Log("Starting to shrink back...");
+    if(AudioManager.instance != null)
+        {
+            AudioManager.instance.PlaySound(AudioManager.instance.powerDownClip);
+        }
     Vector3 startScale = player.localScale; // Capture the current scale before shrinking
     float elapsed = 0f;
 

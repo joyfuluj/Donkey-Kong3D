@@ -25,6 +25,10 @@ public class Coins : MonoBehaviour
         Debug.Log("Trigger");
         if (other.gameObject.CompareTag("Mario"))
         {
+            if(AudioManager.instance != null)
+            {
+                AudioManager.instance.PlaySound(AudioManager.instance.getCoinClip);
+            }
             OnCoinCollected.Invoke();
             Destroy(gameObject);
         }

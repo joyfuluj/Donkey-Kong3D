@@ -70,11 +70,20 @@ public class GameManager : SingletonMonoBehavior<GameManager>
     }
     public void RemoveLife()
     {
+        if(AudioManager.instance != null && maxLives != 1)
+        {
+            AudioManager.instance.PlaySound(AudioManager.instance.loseLifeClip);
+        }
         maxLives--;
         UpdateHeartsUI();
         // game over UI if maxLives < 0, then exit to main menu after delay
         if (maxLives <= 0)
         {
+            if(AudioManager.instance != null)
+            {
+                AudioManager.instance.AmbienceSource.Stop();
+                AudioManager.instance.PlaySound(AudioManager.instance.gameOverClip);
+            }
             // Show Game Over text and return to the main menu after a delay
             StartCoroutine(GameOverSequence());
         }
