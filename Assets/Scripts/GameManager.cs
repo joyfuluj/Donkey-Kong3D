@@ -1,3 +1,6 @@
+#if UNITY_EDITOR
+using UnityEditor;
+#endif
 using UnityEngine;
 using TMPro;
 using System.Collections;
@@ -20,6 +23,20 @@ public class GameManager : SingletonMonoBehavior<GameManager>
 
     private bool isMarioBig=false;
     private bool isImmune=false; //Track whether Mario is immune to the barrels
+    [SerializeField] private InputManager inputManager;
+    [SerializeField] private GameObject settingsMenu;
+    private bool isSettingsMenuActive;
+    public bool IsSettingsMenuActive => isSettingsMenuActive;
+    protected override void Awake()
+    {
+        base.Awake();
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
+        inputManager.OnSettingsMenu.AddListener(ToggleSettingsMenu);
+        // the game starts with the settings menu disabled
+        DisableSettingsMenu();
+    }
+
 
     void Start()
     {
@@ -57,12 +74,14 @@ public class GameManager : SingletonMonoBehavior<GameManager>
 
     private void Update()
     {
-        if (currentTime > 0)
+        // Countdown timer logic
+        if (!isSettingsMenuActive && currentTime > 0)
         {
             currentTime -= Time.deltaTime;
             UpdateTimerUI();
         }
-        if (currentTime <= 0)
+
+        if (currentTime <= 0 && !isSettingsMenuActive)
         {
             currentTime = 0;
             OnCountdownEnd();
@@ -156,4 +175,38 @@ public class GameManager : SingletonMonoBehavior<GameManager>
         Debug.Log("Back to Main Menu");
         // SceneHandler.Instance.LoadMenuScene();
     }
+
+    private void ToggleSettingsMenu()
+    {
+        if (isSettingsMenuActive) DisableSettingsMenu();
+        else EnableSettingsMenu();
+    }
+    private void EnableSettingsMenu()
+    {
+        Time.timeScale = 0f;
+        settingsMenu.SetActive(true);
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+        isSettingsMenuActive = true;
+    }
+
+    public void DisableSettingsMenu()
+    {
+        Time.timeScale = 1f;
+        settingsMenu.SetActive(false);
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+        isSettingsMenuActive = false;
+    }
+
+    public void QuitGame()
+    {
+# if UNITY_EDITOR
+        EditorApplication.isPlaying = false;
+# else
+        Application.Quit();
+# endif
+    }
+
+
 }
