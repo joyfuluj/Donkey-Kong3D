@@ -14,6 +14,8 @@ public class PlayerController : MonoBehaviour
     private bool isBlinking=false;
     private Renderer playerRenderer;
     private Color originalColor;
+    private bool isClimbingSoundPlaying = false; // Flag to track climbing sound
+
     void Start()
     {
         rb = GetComponent<Rigidbody>();  // Get the Rigidbody component
@@ -33,13 +35,16 @@ public class PlayerController : MonoBehaviour
         {
             moveDirection = 1f;   // Move right
         }
-
         Vector3 movement = new Vector3(moveDirection * moveSpeed, rb.linearVelocity.y, 0);  // Move along X-axis only
         rb.linearVelocity = movement;  // Apply velocity directly
 
         // Jumping using InputManager
         if (InputManager.Instance.GetJumpPressed() && isGrounded)
         {
+            if(AudioManager.instance != null)
+            {
+                AudioManager.instance.sfxSource.PlayOneShot(AudioManager.instance.jumpClip);
+            }
             rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);  // Jump upward
             isGrounded = false;  // Prevent double jumping
         }
@@ -98,13 +103,24 @@ public class PlayerController : MonoBehaviour
         Debug.Log("Can climb set to " + canClimb);
         this.canClimb= canClimb;
     }
-    public void climbUpLadder(){
+    public  void climbUpLadder(){
+        if (AudioManager.instance != null && !isClimbingSoundPlaying)
+        {
+            isClimbingSoundPlaying = true; // Set the flag to true
+            AudioManager.instance.sfxSource.PlayOneShot(AudioManager.instance.climbClip);
+            StartCoroutine(ResetClimbingSoundFlag(AudioManager.instance.climbClip.length)); // Reset flag after sound finishes
+        }
         Debug.Log("Climbing up ladder");
-       Transform upPosition = ladder.top;
-       this.transform.position = upPosition.position;
-
+        Transform upPosition = ladder.top;
+        this.transform.position = upPosition.position;
     }
     public void climbDownLadder(){
+        if (AudioManager.instance != null && !isClimbingSoundPlaying)
+        {
+            isClimbingSoundPlaying = true; // Set the flag to true
+            AudioManager.instance.sfxSource.PlayOneShot(AudioManager.instance.climbClip);
+            StartCoroutine(ResetClimbingSoundFlag(AudioManager.instance.climbClip.length)); // Reset flag after sound finishes
+        }
         Debug.Log("Climbing down ladder");
         Transform downPosition = ladder.bottom;
         this.transform.position = downPosition.position;
@@ -119,6 +135,13 @@ public class PlayerController : MonoBehaviour
             playerRenderer.material.color=originalColor;
             yield return new WaitForSeconds(0.25f);
         }
+    }
+
+    // Coroutine to reset the climbing sound flag
+    private IEnumerator ResetClimbingSoundFlag(float delay)
+    {
+        yield return new WaitForSeconds(delay); // Wait for the sound to finish
+        isClimbingSoundPlaying = false; // Reset the flag
     }
 
 }

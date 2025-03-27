@@ -94,11 +94,21 @@ public class GameManager : SingletonMonoBehavior<GameManager>
         if(isImmune){
             return; //don't do anything when he is immune
         }
+        if(AudioManager.instance != null && maxLives != 1)
+        {
+            AudioManager.instance.sfxSource.PlayOneShot(AudioManager.instance.loseLifeClip);
+            AudioManager.instance.sfxSource.PlayOneShot(AudioManager.instance.kongClip);
+        }
         maxLives--;
         UpdateHeartsUI();
         // game over UI if maxLives < 0, then exit to main menu after delay
         if (maxLives <= 0)
         {
+            if(AudioManager.instance != null)
+            {
+                AudioManager.instance.ambienceSource.Stop();
+                AudioManager.instance.PlaySound(AudioManager.instance.gameOverClip);
+            }
             // Show Game Over text and return to the main menu after a delay
             StartCoroutine(GameOverSequence());
         }
