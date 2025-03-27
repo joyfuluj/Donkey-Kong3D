@@ -45,7 +45,7 @@ public class Items : MonoBehaviour
         if(AudioManager.instance != null)
         {
             // Stop the ambient sound
-            AudioManager.instance.AmbienceSource.Stop();
+            AudioManager.instance.ambienceSource.Stop();
             yield return new WaitForSeconds(0.8f);
             AudioManager.instance.PlaySound(AudioManager.instance.powerUpClip);
             StartCoroutine(PlaySoundWithDelay(AudioManager.instance.bigMarioClip, 1f));
@@ -100,7 +100,7 @@ public class Items : MonoBehaviour
         // Play the power-down sound
         AudioManager.instance.PlaySound(AudioManager.instance.powerDownClip);
         // Play the ambient sound
-        AudioManager.instance.AmbienceSource.Play();
+        AudioManager.instance.ambienceSource.Play();
     }
 
     Vector3 startScale = player.localScale; // Capture the current scale before shrinking

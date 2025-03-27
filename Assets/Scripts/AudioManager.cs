@@ -6,16 +6,19 @@ public class AudioManager : MonoBehaviour
     public static AudioManager instance;
 
     [Header("Audio Sources")]
-    
     public AudioSource sfxSource;
-    public AudioSource AmbienceSource;
+    public AudioSource ambienceSource;
 
-    [Header("Audio Clips")]
+    [Header("Background Music (BGM) Clips")]
     public AudioClip introClip;     
-    public AudioClip ambientClip_level1;
-    public AudioClip ambientClip_level2;
+    public AudioClip ambientClip_Level1;
+    public AudioClip ambientClip_Level2;
     public AudioClip winClip;
     public AudioClip gameOverClip;
+    public AudioClip stageClearClip; 
+    public AudioClip pauseClip; 
+
+    [Header("Sound Effects (SFX) - Mario Clips")]
     public AudioClip kongClip;
     public AudioClip climbClip;
     public AudioClip jumpClip;
@@ -26,9 +29,7 @@ public class AudioManager : MonoBehaviour
     public AudioClip powerUpClip; 
     public AudioClip bigMarioClip; 
     public AudioClip fightOffClip; 
-    public AudioClip powerDownClip; 
-    public AudioClip stageClearClip; 
-    public AudioClip pauseClip; 
+    public AudioClip powerDownClip;
 
     private Dictionary<AudioClip, AudioSource> activeSounds = new Dictionary<AudioClip, AudioSource>();
 
@@ -46,25 +47,25 @@ public class AudioManager : MonoBehaviour
     }
     void Start()
     {
-        Debug.Log("Starting Ambient Sound: " + (ambientClip_level1 != null ? "Clip Found" : "Clip Missing"));
+        Debug.Log("Starting Ambient Sound: " + (ambientClip_Level1 != null ? "Clip Found" : "Clip Missing"));
         PlayAmbientSound();
     }
     
     public void PlayAmbientSound()
     {
-        if (AmbienceSource == null)
+        if (ambienceSource == null)
         {
             Debug.LogError("AmbienceSource is NULL!");
             return;
         }
-        else if (ambientClip_level1 == null)
+        else if (ambientClip_Level1 == null)
         {
             Debug.LogError("ambientClip_level1 is NULL!");
             return;
         }
-        AmbienceSource.clip = ambientClip_level1;
-        AmbienceSource.loop = true;
-        AmbienceSource.Play();
+        ambienceSource.clip = ambientClip_Level1;
+        ambienceSource.loop = true;
+        ambienceSource.Play();
         Debug.Log("Ambient Sound Playing...");
     }
 

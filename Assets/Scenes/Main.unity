@@ -3737,12 +3737,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sfxSource: {fileID: 1521432928}
-  AmbienceSource: {fileID: 1521432927}
+  ambienceSource: {fileID: 1521432927}
   introClip: {fileID: 8300000, guid: c8002feacac824352bfd1ce296331c75, type: 3}
-  ambientClip_level1: {fileID: 8300000, guid: a421ddb5156b64cc58e7b40f172ab75c, type: 3}
-  ambientClip_level2: {fileID: 8300000, guid: 45cba13dd87784f198b52097ba607b14, type: 3}
+  ambientClip_Level1: {fileID: 8300000, guid: a421ddb5156b64cc58e7b40f172ab75c, type: 3}
+  ambientClip_Level2: {fileID: 8300000, guid: 45cba13dd87784f198b52097ba607b14, type: 3}
   winClip: {fileID: 8300000, guid: e557ba6146b124ce0a16d1c4c55dacd4, type: 3}
   gameOverClip: {fileID: 8300000, guid: daac9b935ac344969b10596f8c016a30, type: 3}
+  stageClearClip: {fileID: 8300000, guid: 1ccaaab075f5a452885d016e3dc08578, type: 3}
+  pauseClip: {fileID: 8300000, guid: cc1b2ec68674644bc97718d621c276ba, type: 3}
   kongClip: {fileID: 8300000, guid: e4e998d4dc6ac47fe874c2b98c35eaa4, type: 3}
   climbClip: {fileID: 8300000, guid: 202c1fe239fbb4b5fae05c203e8bdcc7, type: 3}
   jumpClip: {fileID: 8300000, guid: d0ad5fd04347e4ca4b32261ac6999a0a, type: 3}
@@ -3754,8 +3756,6 @@ MonoBehaviour:
   bigMarioClip: {fileID: 8300000, guid: 532ec0ac56d134464a475bf600da2e60, type: 3}
   fightOffClip: {fileID: 8300000, guid: 06090ee0f7fb242b09bb653cb45e2e2b, type: 3}
   powerDownClip: {fileID: 8300000, guid: f1e449c0ba2a247d2b21b7b4345eedd3, type: 3}
-  stageClearClip: {fileID: 8300000, guid: 1ccaaab075f5a452885d016e3dc08578, type: 3}
-  pauseClip: {fileID: 8300000, guid: cc1b2ec68674644bc97718d621c276ba, type: 3}
 --- !u!4 &1521432926
 Transform:
   m_ObjectHideFlags: 0

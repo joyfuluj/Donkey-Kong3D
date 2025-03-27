@@ -96,8 +96,8 @@ public class GameManager : SingletonMonoBehavior<GameManager>
         }
         if(AudioManager.instance != null && maxLives != 1)
         {
-            AudioManager.instance.PlaySound(AudioManager.instance.loseLifeClip);
-            AudioManager.instance.PlaySound(AudioManager.instance.kongClip);
+            AudioManager.instance.sfxSource.PlayOneShot(AudioManager.instance.loseLifeClip);
+            AudioManager.instance.sfxSource.PlayOneShot(AudioManager.instance.kongClip);
         }
         maxLives--;
         UpdateHeartsUI();
@@ -106,7 +106,7 @@ public class GameManager : SingletonMonoBehavior<GameManager>
         {
             if(AudioManager.instance != null)
             {
-                AudioManager.instance.AmbienceSource.Stop();
+                AudioManager.instance.ambienceSource.Stop();
                 AudioManager.instance.PlaySound(AudioManager.instance.gameOverClip);
             }
             // Show Game Over text and return to the main menu after a delay
