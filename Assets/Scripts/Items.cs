@@ -44,6 +44,8 @@ public class Items : MonoBehaviour
         // Debug.Log("Started scaling...");
         if(AudioManager.instance != null)
         {
+            // Stop the ambient sound
+            AudioManager.instance.AmbienceSource.Stop();
             yield return new WaitForSeconds(0.8f);
             AudioManager.instance.PlaySound(AudioManager.instance.powerUpClip);
             StartCoroutine(PlaySoundWithDelay(AudioManager.instance.bigMarioClip, 1f));
@@ -93,10 +95,14 @@ public class Items : MonoBehaviour
     private IEnumerator ShrinkPlayerOverTime(Transform player, float duration, Vector3 originalScale)
 {
     // Debug.Log("Starting to shrink back...");
-    if(AudioManager.instance != null)
+    if (AudioManager.instance != null)
     {
+        // Play the power-down sound
         AudioManager.instance.PlaySound(AudioManager.instance.powerDownClip);
+        // Play the ambient sound
+        AudioManager.instance.AmbienceSource.Play();
     }
+
     Vector3 startScale = player.localScale; // Capture the current scale before shrinking
     float elapsed = 0f;
 
@@ -106,10 +112,14 @@ public class Items : MonoBehaviour
         elapsed += Time.deltaTime;
         yield return null;
     }
-    if(AudioManager.instance != null)
+
+    if (AudioManager.instance != null)
     {
+        // Stop the bigMarioClip
         AudioManager.instance.StopSound(AudioManager.instance.bigMarioClip);
+
     }
+
     player.localScale = originalScale; // Ensure it's exactly back to normal size
     // Debug.Log("Mario is back to normal size: " + player.localScale.ToString());
     GameManager.Instance.setMarioBig(false);
