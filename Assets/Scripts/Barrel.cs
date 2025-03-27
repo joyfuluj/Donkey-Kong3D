@@ -43,7 +43,6 @@ public class Barrel : MonoBehaviour
 
             if (GameManager.Instance.getMarioBig()) // Checking if Mario has grown
             {
-                
                 Destroy(gameObject);
             }
             else{

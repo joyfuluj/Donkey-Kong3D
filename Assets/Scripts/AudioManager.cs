@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections.Generic;
 
 public class AudioManager : MonoBehaviour
 {
@@ -23,10 +24,13 @@ public class AudioManager : MonoBehaviour
     public AudioClip getCoinClip; 
     public AudioClip getItemClip; 
     public AudioClip powerUpClip; 
+    public AudioClip bigMarioClip; 
+    public AudioClip fightOffClip; 
     public AudioClip powerDownClip; 
     public AudioClip stageClearClip; 
     public AudioClip pauseClip; 
 
+    private Dictionary<AudioClip, AudioSource> activeSounds = new Dictionary<AudioClip, AudioSource>();
 
 
     private void Awake()
@@ -64,11 +68,32 @@ public class AudioManager : MonoBehaviour
         Debug.Log("Ambient Sound Playing...");
     }
 
-    public void PlaySound (AudioClip clip)
+    public void PlaySound(AudioClip clip)
     {
         if (clip != null)
         {
-            sfxSource.PlayOneShot(clip);
+            if (sfxSource == null)
+            {
+                Debug.LogError("sfxSource is NULL!");
+                return;
+            }
+
+            sfxSource.clip = clip;
+            sfxSource.Play();
+        }
+    }
+
+    public void StopSound(AudioClip clip)
+    {
+        if (activeSounds.ContainsKey(clip))
+        {
+            AudioSource source = activeSounds[clip];
+            if (source != null && source.isPlaying)
+            {
+                source.Stop();
+                Destroy(source); // Cleanup
+            }
+            activeSounds.Remove(clip);
         }
     }
 }
