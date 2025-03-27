@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
@@ -10,6 +11,9 @@ public class PlayerController : MonoBehaviour
 
     private bool canClimb = false;
     private Ladder ladder = null;
+    private bool isBlinking=false;
+    private Renderer playerRenderer;
+    private Color originalColor;
     void Start()
     {
         rb = GetComponent<Rigidbody>();  // Get the Rigidbody component
@@ -50,6 +54,13 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    private void Awake()
+    {
+        playerRenderer=GetComponent<Renderer>();
+        originalColor=playerRenderer.material.color;
+        
+    }
+
     // Detect if Mario is grounded
     void OnCollisionEnter(Collision collision)
     {
@@ -67,6 +78,16 @@ public class PlayerController : MonoBehaviour
             Debug.Log("Not grounded, can't jump");
             isGrounded = false;
         }
+    }
+
+    public void EnableImmunityEffect(){
+        StartCoroutine(BlinkingEffect());
+    }
+
+    public void DisableImmunityEffect(){
+        StartCoroutine(BlinkingEffect());
+        playerRenderer.material.color=originalColor;
+        isBlinking=false;
     }
 
     public void ResetPosition(){
@@ -94,6 +115,17 @@ public class PlayerController : MonoBehaviour
         Debug.Log("Climbing down ladder");
         Transform downPosition = ladder.bottom;
         this.transform.position = downPosition.position;
+    }
+
+    private IEnumerator BlinkingEffect(){
+        isBlinking=true;
+        while(isBlinking){
+            playerRenderer.material.color= Color.red;
+            yield return new WaitForSeconds(0.25f);
+
+            playerRenderer.material.color=originalColor;
+            yield return new WaitForSeconds(0.25f);
+        }
     }
 
 }
