@@ -183,6 +183,11 @@ public class GameManager : SingletonMonoBehavior<GameManager>
     }
     private void EnableSettingsMenu()
     {
+        if(AudioManager.instance != null)
+        {
+            AudioManager.instance.ambienceSource.Stop();
+            AudioManager.instance.sfxSource.PlayOneShot(AudioManager.instance.pauseClip);
+        }
         Time.timeScale = 0f;
         settingsMenu.SetActive(true);
         Cursor.lockState = CursorLockMode.None;
@@ -192,6 +197,7 @@ public class GameManager : SingletonMonoBehavior<GameManager>
 
     public void DisableSettingsMenu()
     {
+        AudioManager.instance.ambienceSource.Play();
         Time.timeScale = 1f;
         settingsMenu.SetActive(false);
         Cursor.lockState = CursorLockMode.Locked;
