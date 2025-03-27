@@ -46,7 +46,7 @@ public class Items : MonoBehaviour
         {
             yield return new WaitForSeconds(0.8f);
             AudioManager.instance.PlaySound(AudioManager.instance.powerUpClip);
-            AudioManager.instance.PlaySound(AudioManager.instance.bigMarioClip);
+            StartCoroutine(PlaySoundWithDelay(AudioManager.instance.bigMarioClip, 1f));
         }
         Vector3 playerStartScale = player.localScale;
         Vector3 playerEndScale = playerStartScale * playerScale;
@@ -82,6 +82,12 @@ public class Items : MonoBehaviour
 
         // Now it's safe to destroy the object after shrinking is done
         Destroy(gameObject);
+    }
+    // Coroutine to play sound after a delay
+    private IEnumerator PlaySoundWithDelay(AudioClip clip, float delay)
+    {
+        yield return new WaitForSeconds(delay); // Wait for the delay time
+        AudioManager.instance.PlaySound(clip);
     }
 
     private IEnumerator ShrinkPlayerOverTime(Transform player, float duration, Vector3 originalScale)

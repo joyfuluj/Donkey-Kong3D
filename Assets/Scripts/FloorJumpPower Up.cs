@@ -33,7 +33,7 @@ public class FloorJumpPowerUp : MonoBehaviour
     {
         if(AudioManager.instance != null)
         {
-            AudioManager.instance.PlaySound(AudioManager.instance.jumpOverClip);
+            AudioManager.instance.sfxSource.PlayOneShot(AudioManager.instance.jumpOverClip);
         }
         // Find all floors in the scene (tagged as "Ground")
         GameObject[] floors = GameObject.FindGameObjectsWithTag("Ground");

@@ -19,7 +19,7 @@ public class Coins : MonoBehaviour
         {
             if(AudioManager.instance != null)
             {
-                AudioManager.instance.PlaySound(AudioManager.instance.getCoinClip);
+                AudioManager.instance.sfxSource.PlayOneShot(AudioManager.instance.getCoinClip);
             }
             OnCoinCollected.Invoke();
             GameManager.Instance.AddScore();
