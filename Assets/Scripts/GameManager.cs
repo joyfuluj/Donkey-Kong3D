@@ -178,7 +178,10 @@ public class GameManager : SingletonMonoBehavior<GameManager>
 
     private void ToggleSettingsMenu()
     {
-        if (isSettingsMenuActive) DisableSettingsMenu();
+        if (isSettingsMenuActive){
+            AudioManager.instance.ambienceSource.Play();
+            DisableSettingsMenu();
+        }
         else EnableSettingsMenu();
     }
     private void EnableSettingsMenu()
@@ -197,7 +200,6 @@ public class GameManager : SingletonMonoBehavior<GameManager>
 
     public void DisableSettingsMenu()
     {
-        AudioManager.instance.ambienceSource.Play();
         Time.timeScale = 1f;
         settingsMenu.SetActive(false);
         Cursor.lockState = CursorLockMode.Locked;
