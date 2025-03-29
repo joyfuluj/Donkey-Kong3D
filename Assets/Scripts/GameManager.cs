@@ -27,6 +27,9 @@ public class GameManager : SingletonMonoBehavior<GameManager>
     [SerializeField] private GameObject settingsMenu;
     private bool isSettingsMenuActive;
     public bool IsSettingsMenuActive => isSettingsMenuActive;
+
+    private bool isGameOver = false; // Flag to track if the game over sequence has started
+
     protected override void Awake()
     {
         base.Awake();
@@ -106,38 +109,34 @@ public class GameManager : SingletonMonoBehavior<GameManager>
     }
     private void OnCountdownEnd()
     {
-        StartCoroutine(GameOverSequence());
+        if (!isGameOver)
+        {
+            StartCoroutine(GameOverSequence());
+        }
     }
     public void RemoveLife()
     {
-        if(isImmune){
-            return; //don't do anything when he is immune
+        if (isImmune)
+        {
+            return; // Don't do anything when Mario is immune
         }
-        if(AudioManager.instance != null && maxLives != 1)
+        if (AudioManager.instance != null && maxLives != 1)
         {
             AudioManager.instance.sfxSource.PlayOneShot(AudioManager.instance.loseLifeClip);
             AudioManager.instance.sfxSource.PlayOneShot(AudioManager.instance.kongClip);
         }
         maxLives--;
         UpdateHeartsUI();
-        // game over UI if maxLives < 0, then exit to main menu after delay
-        if (maxLives <= 0)
+
+        // Start Game Over sequence if lives are 0
+        if (maxLives <= 0 && !isGameOver)
         {
-            if(AudioManager.instance != null)
-            {
-                AudioManager.instance.ambienceSource.Stop();
-                AudioManager.instance.PlaySound(AudioManager.instance.gameOverClip);
-            }
-            // Show Game Over text and return to the main menu after a delay
             StartCoroutine(GameOverSequence());
         }
         else
         {
             StartCoroutine(ResetWithImmunity());
-            // mario.ResetPosition();
         }
-
-
     }
     private void UpdateHeartsUI()
     {
@@ -160,7 +159,16 @@ public class GameManager : SingletonMonoBehavior<GameManager>
 
     private IEnumerator GameOverSequence()
     {
-        Time.timeScale = 0f; //freezing the time
+        if (isGameOver) yield break; // Prevent multiple calls
+        isGameOver = true; // Set the flag to true
+
+        if (AudioManager.instance != null)
+        {
+            AudioManager.instance.ambienceSource.Stop();
+            AudioManager.instance.PlaySound(AudioManager.instance.gameOverClip);
+        }
+
+        Time.timeScale = 0f; // Freeze the time
 
         // Show the Game Over UI
         gameOver.gameObject.SetActive(true);
@@ -174,6 +182,10 @@ public class GameManager : SingletonMonoBehavior<GameManager>
         // Handle Next Scene
         Debug.Log("Back to Main Menu");
         // SceneHandler.Instance.LoadMenuScene();
+
+        // TODO: Back to main menu
+        yield return new WaitForSeconds(3f);
+        QuitGame();
     }
 
     private void ToggleSettingsMenu()
