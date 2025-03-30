@@ -2171,7 +2171,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 842467626}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -3586,6 +3586,10 @@ PrefabInstance:
     - target: {fileID: 6429693295531935323, guid: 127b315e6aa0f467cb06c6e6940c74f6, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0.112
+      objectReference: {fileID: 0}
+    - target: {fileID: 7978855442060202962, guid: 127b315e6aa0f467cb06c6e6940c74f6, type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
