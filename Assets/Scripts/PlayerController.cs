@@ -77,9 +77,9 @@ public class PlayerController : MonoBehaviour
             originalMaterials = new Material[materials.Length];
 
             for (int i = 0; i < materials.Length; i++)
-        {
-            originalMaterials[i] = new Material(materials[i]);
-        }
+            {
+                originalMaterials[i] = new Material(materials[i]);
+            }
         }
 
     }
@@ -92,6 +92,11 @@ public class PlayerController : MonoBehaviour
             Debug.Log("Grounded, can jump");
             isGrounded = true;
             animator.SetBool("isGrounded", true);
+        }
+        if (collision.gameObject.CompareTag("Peach"))
+        {
+            // Call the PauseTimer method in the GameManager
+            GameManager.Instance.PauseTimer();
         }
     }
 
@@ -194,8 +199,8 @@ public class PlayerController : MonoBehaviour
 
         for (int i = 0; i < materials.Length; i++)
         {
-            
-                materials[i].color = originalMaterials[i].color;
+
+            materials[i].color = originalMaterials[i].color;
         }
 
         playerRenderer.materials = materials; // Reassign the original materials
