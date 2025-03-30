@@ -1,0 +1,102 @@
+Fall_v
+======
+  Textures:
+    - FallEdge
+        Offset: 0, -3.7137136459350586
+        Scale: 1, 2
+    - IndWapeWater
+        Offset: 0.9274999499320984, -1.8549998998641968
+        Scale: 10, 1.2000000476837158
+    - EzFall01
+        Offset: 0, 0.7400000095367432
+        Scale: 1.2000000476837158, 1
+    - BxWoodCriff
+        Offset: -0.0390625, 0.7421875
+        Scale: 0.869140625, 1.8994140625
+
+  Ambient Colors:
+    - 50, 50, 50, 50
+
+  Constant Colors:
+    - 101, 122, 134, 255
+
+  Material Colors:
+    - 34, 53, 91, 255
+    - 34, 53, 91, 255
+
+  Color Registers:
+    - 34, 53, 91, 255
+    - 150, 150, 150, 255
+
+  Steps:
+    1: RGB = (101, 122, 134)
+         A = (tex #1 A)
+    2: RGB = ((34, 53, 91) * (tex #4 RGB))
+         A = (prev. A)
+    3: RGB = (lerp from (prev. RGB) to (101, 122, 134) using (tex #3 RGB))
+         A = (prev. A)
+    4: RGB = ((150, 150, 150) * (vertex RGB)), then add (prev. RGB)
+         A = (vertex A)
+
+
+
+Wood1_v
+=======
+  Textures:
+    - S_wood
+
+  Ambient Colors:
+    - 50, 50, 50, 50
+
+  Constant Colors:
+    - 20, 10, 4, 255
+
+  Material Colors:
+    - 204, 204, 204, 255
+    - 204, 204, 204, 255
+
+  Steps:
+    1: RGB = (lerp from (20, 10, 4) to (tex #1 RGB) using (vertex RGB))
+         A = ((tex #1 A) * (vertex A))
+
+
+
+Wood2_v
+=======
+  Textures:
+    - miki
+
+  Ambient Colors:
+    - 50, 50, 50, 50
+
+  Constant Colors:
+    - 20, 10, 4, 255
+
+  Material Colors:
+    - 204, 204, 204, 255
+    - 204, 204, 204, 255
+
+  Steps:
+    1: RGB = (lerp from (20, 10, 4) to (tex #1 RGB) using (vertex RGB))
+         A = ((tex #1 A) * (vertex A))
+
+
+
+wood3_v
+=======
+  Textures:
+    - H_TNOH_nenrin
+
+  Ambient Colors:
+    - 50, 50, 50, 50
+
+  Constant Colors:
+    - 20, 10, 4, 255
+
+  Material Colors:
+    - 204, 204, 204, 255
+    - 204, 204, 204, 255
+
+  Steps:
+    1: RGB = (lerp from (20, 10, 4) to (tex #1 RGB) using (vertex RGB))
+         A = ((tex #1 A) * (vertex A))
