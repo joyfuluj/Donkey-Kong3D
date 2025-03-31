@@ -20,9 +20,10 @@ public class GameManager : SingletonMonoBehavior<GameManager>
     [SerializeField] private float countdownTime = 90f; // Total countdown time in seconds
     [SerializeField] private TextMeshProUGUI timerText; // Reference to the UI text for the timer
     private float currentTime; // Tracks the current time left in the countdown
+    private bool isTimerPaused = false;
 
-    private bool isMarioBig=false;
-    private bool isImmune=false; //Track whether Mario is immune to the barrels
+    private bool isMarioBig = false;
+    private bool isImmune = false; //Track whether Mario is immune to the barrels
     [SerializeField] private InputManager inputManager;
     [SerializeField] private GameObject settingsMenu;
     private bool isSettingsMenuActive;
@@ -46,13 +47,16 @@ public class GameManager : SingletonMonoBehavior<GameManager>
         UpdateScoreUI();
     }
 
-    void UpdateScoreUI(){
-        if(scoreText!=null){
-            scoreText.text=""+score;
+    void UpdateScoreUI()
+    {
+        if (scoreText != null)
+        {
+            scoreText.text = "" + score;
         }
     }
 
-    public void AddScore(){
+    public void AddScore()
+    {
         score++;
         UpdateScoreUI();
     }
@@ -78,7 +82,7 @@ public class GameManager : SingletonMonoBehavior<GameManager>
     private void Update()
     {
         // Countdown timer logic
-        if (!isSettingsMenuActive && currentTime > 0)
+        if (!isSettingsMenuActive && !isTimerPaused && currentTime > 0)
         {
             currentTime -= Time.deltaTime;
             UpdateTimerUI();
@@ -147,13 +151,14 @@ public class GameManager : SingletonMonoBehavior<GameManager>
         }
     }
 
-    private IEnumerator ResetWithImmunity(){
-        isImmune=true; //set immune to true
+    private IEnumerator ResetWithImmunity()
+    {
+        isImmune = true; //set immune to true
         mario.EnableImmunityEffect();
         mario.ResetPosition(); //reset his position
 
         yield return new WaitForSeconds(3f); //wait 3 second for immunity;
-        isImmune=false;
+        isImmune = false;
         mario.DisableImmunityEffect();
     }
 
@@ -161,6 +166,7 @@ public class GameManager : SingletonMonoBehavior<GameManager>
     {
         if (isGameOver) yield break; // Prevent multiple calls
         isGameOver = true; // Set the flag to true
+        PauseTimer();
 
         if (AudioManager.instance != null)
         {
@@ -190,7 +196,8 @@ public class GameManager : SingletonMonoBehavior<GameManager>
 
     private void ToggleSettingsMenu()
     {
-        if (isSettingsMenuActive){
+        if (isSettingsMenuActive)
+        {
             AudioManager.instance.ambienceSource.Play();
             DisableSettingsMenu();
         }
@@ -198,7 +205,7 @@ public class GameManager : SingletonMonoBehavior<GameManager>
     }
     private void EnableSettingsMenu()
     {
-        if(AudioManager.instance != null)
+        if (AudioManager.instance != null)
         {
             AudioManager.instance.ambienceSource.Stop();
             AudioManager.instance.sfxSource.PlayOneShot(AudioManager.instance.pauseClip);
@@ -217,6 +224,11 @@ public class GameManager : SingletonMonoBehavior<GameManager>
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
         isSettingsMenuActive = false;
+    }
+
+    public void PauseTimer()
+    {
+        isTimerPaused = true; // Pause the timer
     }
 
     public void QuitGame()
