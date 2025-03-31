@@ -6,6 +6,7 @@ using TMPro;
 using System.Collections;
 using JetBrains.Annotations;
 
+
 public class GameManager : SingletonMonoBehavior<GameManager>
 {
     [SerializeField] private int maxLives = 3;
@@ -231,7 +232,39 @@ public class GameManager : SingletonMonoBehavior<GameManager>
     public void PauseTimer()
     {
         isTimerPaused = true; // Pause the timer
+        StartCoroutine(WinSequence()); // Trigger win sequence when timer is paused
     }
+
+    private IEnumerator WinSequence() {
+        if (AudioManager.instance != null)
+        { 
+            AudioManager .instance .ambienceSource.Stop();
+            AudioManager.instance.PlaySound(AudioManager.instance.winClip);
+        
+        }
+        yield return new WaitForSeconds(2f); // Brief delay to enjoy win moment
+
+            if (SceneHandler.instance != null)
+        {
+
+            SceneHandler.instance.LoadWinScene();
+
+
+        }
+        else {
+            Debug.LogError("SceneHandler instance not found");
+        
+        }
+    
+    
+    
+    
+    }
+
+
+
+
+
 
     public void QuitGame()
     {
