@@ -9,6 +9,7 @@ public class DonkeyKongController : MonoBehaviour
     public Transform player, barrelContainer;
 
     public GameObject barrelPrefab;
+    public ParticleSystem barrelHitEffect;
     public Transform spawnPoint;
 
     public float pickUpRange;
@@ -124,6 +125,7 @@ public class DonkeyKongController : MonoBehaviour
             newBarrelController.barrelPrefab = barrelPrefab;
             newBarrelController.spawnPoint = spawnPoint;
             newBarrelController.animator=animator;
+            newBarrelController.barrelHitEffect=barrelHitEffect;
         }
     }
 

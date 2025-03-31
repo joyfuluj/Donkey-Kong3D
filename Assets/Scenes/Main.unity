@@ -909,6 +909,7 @@ GameObject:
   - component: {fileID: 457285290}
   - component: {fileID: 457285289}
   - component: {fileID: 457285288}
+  - component: {fileID: 457285292}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -1034,6 +1035,20 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 9.547, y: 0, z: 0}
+--- !u!114 &457285292
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 457285287}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e446ef25f993b904d92f78ae0466712a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  duration: 0.2
+  magnitude: 0.5
 --- !u!1 &461863078
 GameObject:
   m_ObjectHideFlags: 0
@@ -4203,6 +4218,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 5
   jumpForce: 6.5
+  runningDust: {fileID: 198689267340774794, guid: dc1d5ca3304bfa943859960d5d1bb9b3, type: 3}
   playerRenderer: {fileID: 40357959}
   animator: {fileID: 1715983474}
 --- !u!95 &1507790943
@@ -8277,6 +8293,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 801309891}
     m_Modifications:
+    - target: {fileID: -5683679013008223878, guid: 070b7bac81ec64e62aa004d5b808fc5d, type: 3}
+      propertyPath: barrelHitEffect
+      value: 
+      objectReference: {fileID: 198078263120581564, guid: f575565b2e852564f862f4c258ba4ec0, type: 3}
     - target: {fileID: 1445704696567632369, guid: 070b7bac81ec64e62aa004d5b808fc5d, type: 3}
       propertyPath: m_Radius
       value: 0.5
@@ -8321,6 +8341,10 @@ PrefabInstance:
       propertyPath: barrelContainer
       value: 
       objectReference: {fileID: 801309891}
+    - target: {fileID: 5409706983083449645, guid: 070b7bac81ec64e62aa004d5b808fc5d, type: 3}
+      propertyPath: barrelHitEffect
+      value: 
+      objectReference: {fileID: 198078263120581564, guid: f575565b2e852564f862f4c258ba4ec0, type: 3}
     - target: {fileID: 7006567636020851399, guid: 070b7bac81ec64e62aa004d5b808fc5d, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

@@ -120,6 +120,8 @@ public class GameManager : SingletonMonoBehavior<GameManager>
     }
     public void RemoveLife()
     {
+        FindFirstObjectByType<CameraShake>().StartShake();
+
         if (isImmune)
         {
             return; // Don't do anything when Mario is immune
