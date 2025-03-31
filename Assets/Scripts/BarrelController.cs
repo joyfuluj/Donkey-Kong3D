@@ -21,7 +21,7 @@ public class DonkeyKongController : MonoBehaviour
     public float maxTimeBetweenActions = 5f;
     private float timeBetweenActions; // randomised time delay between picking up and throwing barrel
     private bool canPerformAction = true; //flag to control timing logic
-    [SerializeField] private Animator animator;
+    [SerializeField] private Animator animator; //calling the animations for Donkey Kong
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -47,7 +47,6 @@ public class DonkeyKongController : MonoBehaviour
         Vector3 distanceToPlayer = player.position - transform.position;
         if (canPerformAction)
         {
-            animator.SetTrigger("isPickingUp");
             //if player is in the range of the barrel and time to pick up has reached
             if (!equipped && distanceToPlayer.magnitude <= pickUpRange && !slotFull)
             {
@@ -65,7 +64,6 @@ public class DonkeyKongController : MonoBehaviour
 
     private void PickUp()
     {
-        animator.ResetTrigger("isPickingUp");
         equipped = true;
         slotFull = true;
 
@@ -101,8 +99,8 @@ public class DonkeyKongController : MonoBehaviour
 
     private IEnumerator PerformActionAfterDelay()
     {
+        animator.SetTrigger("isPickingUp");
         canPerformAction = false;
-        animator.ResetTrigger("isPickingUp");
         yield return new WaitForSeconds(timeBetweenActions);
         InstantiateNewBarrel();
         canPerformAction = true;
@@ -113,6 +111,7 @@ public class DonkeyKongController : MonoBehaviour
 
     private void InstantiateNewBarrel()
     {
+        
         // Create a new barrel instance at the spawn point
         GameObject newBarrel = Instantiate(barrelPrefab, spawnPoint.position, spawnPoint.rotation);
 
