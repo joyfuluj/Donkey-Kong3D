@@ -7,6 +7,7 @@ public class Barrel : MonoBehaviour
     private bool isRolling = false; // Flag to track if the barrel is rolling
     public float moveSpeed = 7f;
     private Vector3 direction;
+    public ParticleSystem barrelHitEffect;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -17,6 +18,8 @@ public class Barrel : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
+        Instantiate(barrelHitEffect, transform.position, Quaternion.identity);
+
         // Check if the collided object is tagged as "SideWall"
         if (collision.gameObject.CompareTag("SideWall") && !isRolling)
         {
@@ -47,6 +50,7 @@ public class Barrel : MonoBehaviour
                 {
                     AudioManager.instance.sfxSource.PlayOneShot(AudioManager.instance.fightOffClip); // Play fightOffClip without stopping bigMarioClip
                 }
+
                 Destroy(gameObject);
             }
             else

@@ -157,6 +157,7 @@ MonoBehaviour:
   player: {fileID: 0}
   barrelContainer: {fileID: 0}
   barrelPrefab: {fileID: 0}
+  barrelHitEffect: {fileID: 0}
   spawnPoint: {fileID: 0}
   pickUpRange: 4
   dropForwardForce: 5
@@ -178,6 +179,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 5
+  barrelHitEffect: {fileID: 198078263120581564, guid: f575565b2e852564f862f4c258ba4ec0, type: 3}
 --- !u!1001 &3279124733730430427
 PrefabInstance:
   m_ObjectHideFlags: 0

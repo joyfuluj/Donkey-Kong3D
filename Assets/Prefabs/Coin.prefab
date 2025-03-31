@@ -127,6 +127,7 @@ MonoBehaviour:
   OnCoinCollected:
     m_PersistentCalls:
       m_Calls: []
+  collectedCoin: {fileID: 198580859042387738, guid: bfd029cf92085ea4a9842fae64ef7799, type: 3}
 --- !u!1001 &1912199246751108388
 PrefabInstance:
   m_ObjectHideFlags: 0

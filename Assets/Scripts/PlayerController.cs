@@ -9,6 +9,8 @@ public class PlayerController : MonoBehaviour
     private bool isGrounded;      // Check if Mario is on the ground
     private Vector3 originalPosition;
 
+    public ParticleSystem runningDust;
+
     private bool canClimb = false;
     private Ladder ladder = null;
     private bool isBlinking = false;
@@ -104,6 +106,7 @@ public class PlayerController : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Ground"))
         {
+            Instantiate(runningDust, transform.position, Quaternion.identity);
             Debug.Log("Not grounded, can't jump");
             isGrounded = false;
             animator.SetBool("isGrounded", false);
