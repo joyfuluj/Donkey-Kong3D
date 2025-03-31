@@ -4786,6 +4786,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 750653546}
     m_Modifications:
     - target: {fileID: -5683679013008223878, guid: 070b7bac81ec64e62aa004d5b808fc5d, type: 3}
+      propertyPath: moveSpeed
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: -5683679013008223878, guid: 070b7bac81ec64e62aa004d5b808fc5d, type: 3}
       propertyPath: barrelHitEffect
       value: 
       objectReference: {fileID: 198078263120581564, guid: f575565b2e852564f862f4c258ba4ec0, type: 3}
@@ -4887,6 +4891,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7006567636020851399, guid: 070b7bac81ec64e62aa004d5b808fc5d, type: 3}
   m_PrefabInstance: {fileID: 846702961}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &846702963 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: -5683679013008223878, guid: 070b7bac81ec64e62aa004d5b808fc5d, type: 3}
+  m_PrefabInstance: {fileID: 846702961}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 236e855d0c68f4b94b2c37452b889f69, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &854358323
 GameObject:
   m_ObjectHideFlags: 0
@@ -4940,8 +4955,8 @@ MonoBehaviour:
   gameOver: {fileID: 113909257}
   scoreText: {fileID: 1492323989}
   mario: {fileID: 1507790942}
-  barrel: {fileID: 0}
-  countdownTime: 90
+  barrel: {fileID: 846702963}
+  countdownTime: 60
   timerText: {fileID: 405566072}
   inputManager: {fileID: 854358326}
   settingsMenu: {fileID: 493405487}
