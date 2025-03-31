@@ -12,6 +12,8 @@ TagManager:
   - Mario
   - FloorJumpPowerUp
   - Peach
+  - FxTemporaire
+  - Kong
   layers:
   - Default
   - TransparentFX

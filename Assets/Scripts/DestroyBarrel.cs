@@ -19,5 +19,9 @@ public class DestroyBarrel : MonoBehaviour
                 barrelRb.linearVelocity = barrelRb.linearVelocity.normalized * barrelRb.linearVelocity.magnitude;
             }
         }
+        if(collision.gameObject.CompareTag("Kong")){
+            
+            GameManager.Instance.RemoveLife();
+        }
     }
 }
