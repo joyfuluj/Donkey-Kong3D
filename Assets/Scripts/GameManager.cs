@@ -34,6 +34,12 @@ public class GameManager : SingletonMonoBehavior<GameManager>
 
     protected override void Awake()
     {
+        if (Instance != null && Instance != this)
+        {
+            Destroy(gameObject); // Destroy duplicate instances
+            return;
+        }
+
         base.Awake();
         DontDestroyOnLoad(gameObject);
         DontDestroyOnLoad(settingsMenu);
@@ -65,7 +71,8 @@ public class GameManager : SingletonMonoBehavior<GameManager>
         isGameOver = false;
         Scene currentScene = SceneManager.GetActiveScene();
 
-        if (currentScene.buildIndex == 1){
+        if (currentScene.buildIndex == 1)
+        {
             currentTime = 90f;
         }
         else if (currentScene.buildIndex == 2)
@@ -112,6 +119,11 @@ public class GameManager : SingletonMonoBehavior<GameManager>
 
     private void Update()
     {
+        if (isGameOver)
+        {
+            return; // Stop all logic if the game is already over
+        }
+
         // Countdown timer logic
         if (!isSettingsMenuActive && !isTimerPaused && currentTime > 0)
         {
@@ -125,6 +137,7 @@ public class GameManager : SingletonMonoBehavior<GameManager>
             OnCountdownEnd();
         }
     }
+
     private void UpdateTimerUI()
     {
         float displayTime = Mathf.Max(currentTime, 0);
@@ -144,10 +157,14 @@ public class GameManager : SingletonMonoBehavior<GameManager>
     }
     private void OnCountdownEnd()
     {
-        if (!isGameOver)
+        if (isGameOver)
         {
-            StartCoroutine(GameOverSequence());
+            Debug.LogWarning("OnCountdownEnd called, but game is already over. Ignoring.");
+            return; // Prevent multiple calls
         }
+
+        Debug.Log("OnCountdownEnd called");
+        StartCoroutine(GameOverSequence());
     }
     public void RemoveLife()
     {
@@ -197,10 +214,14 @@ public class GameManager : SingletonMonoBehavior<GameManager>
 
     private IEnumerator GameOverSequence()
     {
-        if (isGameOver) yield break; // Prevent multiple calls
+        if (isGameOver)
+        {
+            Debug.LogWarning("GameOverSequence already triggered. Ignoring duplicate call.");
+            yield break; // Prevent multiple calls
+        }
+
         Debug.Log("GameOverSequence triggered");
         isGameOver = true; // Set the flag to true
-        // PauseTimer();
 
         if (AudioManager.instance != null)
         {
@@ -211,7 +232,10 @@ public class GameManager : SingletonMonoBehavior<GameManager>
         Time.timeScale = 0f; // Freeze the time
 
         // Show the Game Over UI
-        gameOver.gameObject.SetActive(true);
+        if (gameOver != null)
+        {
+            gameOver.gameObject.SetActive(true);
+        }
 
         // Wait for 4 seconds
         yield return new WaitForSecondsRealtime(4f);
@@ -219,7 +243,6 @@ public class GameManager : SingletonMonoBehavior<GameManager>
         // Unfreeze time and transition to the main menu
         Time.timeScale = 1f;
 
-        // Handle Next Scene
         Debug.Log("Back to Main Menu");
         SceneHandler.instance.LoadMenuScene();
     }
