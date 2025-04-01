@@ -243,6 +243,7 @@ public class GameManager : SingletonMonoBehavior<GameManager>
 
         if (currentScene.buildIndex == 1) // if current is scene1
         {
+            yield return new WaitForSeconds(4f); 
             if (AudioManager.instance != null)
             {
                 // AudioManager.instance.ambienceSource.Stop(); // Stop ambient sound if needed
@@ -272,12 +273,23 @@ public class GameManager : SingletonMonoBehavior<GameManager>
             {
                 Debug.LogError("SceneHandler instance not found");
             }
+
+            yield return new WaitForSeconds(10f);
+
+            if (SceneHandler.instance != null)
+            {
+                SceneHandler.instance.LoadMenuScene(); // load the main menu
+            }
+            else
+            {
+                Debug.LogError("SceneHandler instance not found");
+            }
         }
         else
         {
             Debug.LogError("Unexpected scene index: " + currentScene.buildIndex);
         }
-        yield return new WaitForSeconds(1f);
+        
     }
 
     public void QuitGame()
