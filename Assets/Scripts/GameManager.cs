@@ -5,7 +5,7 @@ using UnityEngine;
 using TMPro;
 using System.Collections;
 using JetBrains.Annotations;
-
+using UnityEngine.SceneManagement;
 
 public class GameManager : SingletonMonoBehavior<GameManager>
 {
@@ -34,18 +34,69 @@ public class GameManager : SingletonMonoBehavior<GameManager>
 
     protected override void Awake()
     {
+        if (Instance != null && Instance != this)
+        {
+            Destroy(gameObject); // Destroy duplicate instances
+            return;
+        }
+
         base.Awake();
+        DontDestroyOnLoad(gameObject);
+        DontDestroyOnLoad(settingsMenu);
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
         inputManager.OnSettingsMenu.AddListener(ToggleSettingsMenu);
-        // the game starts with the settings menu disabled
         DisableSettingsMenu();
+        UpdateScoreUI();
+        UpdateTimerUI();
+
+        SceneManager.sceneLoaded += OnSceneLoaded;
     }
 
-
-    void Start()
+    private void OnDestroy()
     {
-        UpdateScoreUI();
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
+
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        Debug.Log("Scene Loaded: " + scene.name);
+        isTimerPaused = false;
+        ReassignReferences();
+        UpdateHeartsUI();
+        if (gameOver != null)
+        {
+            gameOver.gameObject.SetActive(false);
+        }
+        isGameOver = false;
+        Scene currentScene = SceneManager.GetActiveScene();
+
+        if (currentScene.buildIndex == 1)
+        {
+            currentTime = 90f;
+        }
+        else if (currentScene.buildIndex == 2)
+        {
+            currentTime = 70f;
+        }
+        else if (currentScene.buildIndex == 0)
+        {
+            isGameOver = true;
+        }
+        
+        UpdateTimerUI(); // Updates timer text on the screen
+
+        Time.timeScale = 1f;
+    }
+
+    private void ReassignReferences()
+    {
+        hearts = GameObject.FindGameObjectsWithTag("Heart");
+        gameOver = GameObject.FindWithTag("GameOverText")?.GetComponent<TextMeshProUGUI>();
+        scoreText = GameObject.FindWithTag("ScoreText")?.GetComponent<TextMeshProUGUI>();
+        timerText = GameObject.FindWithTag("TimerText")?.GetComponent<TextMeshProUGUI>();
+        mario = GameObject.FindWithTag("Mario")?.GetComponent<PlayerController>();
+        barrel = GameObject.FindWithTag("Barrel")?.GetComponent<Barrel>();
     }
 
     void UpdateScoreUI()
@@ -62,15 +113,6 @@ public class GameManager : SingletonMonoBehavior<GameManager>
         UpdateScoreUI();
     }
 
-    private void OnEnable()
-    {
-        //Update the array of hearts
-        UpdateHeartsUI();
-        gameOver.gameObject.SetActive(false); // Hide the Game Over text initially
-
-        currentTime = countdownTime;
-        UpdateTimerUI(); //Updates timer text on the screen
-    }
     public bool getMarioBig()
     {
         return isMarioBig;
@@ -82,6 +124,12 @@ public class GameManager : SingletonMonoBehavior<GameManager>
 
     private void Update()
     {
+        Debug.Log("Update running. currentTime: " + currentTime + ", isGameOver: " + isGameOver);
+        if (isGameOver)
+        {
+            return; // Stop all logic if the game is already over
+        }
+
         // Countdown timer logic
         if (!isSettingsMenuActive && !isTimerPaused && currentTime > 0)
         {
@@ -92,9 +140,11 @@ public class GameManager : SingletonMonoBehavior<GameManager>
         if (currentTime <= 0 && !isSettingsMenuActive)
         {
             currentTime = 0;
+            Debug.Log("Calling OnCountdownEnd()");
             OnCountdownEnd();
         }
     }
+
     private void UpdateTimerUI()
     {
         float displayTime = Mathf.Max(currentTime, 0);
@@ -114,10 +164,14 @@ public class GameManager : SingletonMonoBehavior<GameManager>
     }
     private void OnCountdownEnd()
     {
-        if (!isGameOver)
+        if (isGameOver)
         {
-            StartCoroutine(GameOverSequence());
+            Debug.LogWarning("OnCountdownEnd called, but game is already over. Ignoring.");
+            return; // Prevent multiple calls
         }
+
+        Debug.Log("OnCountdownEnd called");
+        StartCoroutine(GameOverSequence());
     }
     public void RemoveLife()
     {
@@ -167,9 +221,14 @@ public class GameManager : SingletonMonoBehavior<GameManager>
 
     private IEnumerator GameOverSequence()
     {
-        if (isGameOver) yield break; // Prevent multiple calls
+        if (isGameOver)
+        {
+            Debug.LogWarning("GameOverSequence already triggered. Ignoring duplicate call.");
+            yield break; // Prevent multiple calls
+        }
+
+        Debug.Log("GameOverSequence triggered");
         isGameOver = true; // Set the flag to true
-        PauseTimer();
 
         if (AudioManager.instance != null)
         {
@@ -180,21 +239,19 @@ public class GameManager : SingletonMonoBehavior<GameManager>
         Time.timeScale = 0f; // Freeze the time
 
         // Show the Game Over UI
-        gameOver.gameObject.SetActive(true);
+        if (gameOver != null)
+        {
+            gameOver.gameObject.SetActive(true);
+        }
 
-        // Wait for 1.5 seconds
-        yield return new WaitForSecondsRealtime(1.5f);
+        // Wait for 4 seconds
+        yield return new WaitForSecondsRealtime(4f);
 
         // Unfreeze time and transition to the main menu
         Time.timeScale = 1f;
 
-        // Handle Next Scene
         Debug.Log("Back to Main Menu");
-        // SceneHandler.Instance.LoadMenuScene();
-
-        // TODO: Back to main menu
-        yield return new WaitForSeconds(3f);
-        QuitGame();
+        SceneHandler.instance.LoadMenuScene();
     }
 
     private void ToggleSettingsMenu()
@@ -222,6 +279,8 @@ public class GameManager : SingletonMonoBehavior<GameManager>
 
     public void DisableSettingsMenu()
     {
+        
+        AudioManager.instance.ambienceSource.Play();      
         Time.timeScale = 1f;
         settingsMenu.SetActive(false);
         Cursor.lockState = CursorLockMode.Locked;
@@ -231,40 +290,67 @@ public class GameManager : SingletonMonoBehavior<GameManager>
 
     public void PauseTimer()
     {
-        isTimerPaused = true; // Pause the timer
+         isTimerPaused= true; // Pause the timer
         StartCoroutine(WinSequence()); // Trigger win sequence when timer is paused
     }
 
-    private IEnumerator WinSequence() {
-        if (AudioManager.instance != null)
-        { 
-            AudioManager .instance .ambienceSource.Stop();
-            AudioManager.instance.PlaySound(AudioManager.instance.winClip);
-        
+    private IEnumerator WinSequence()
+    {
+        Debug.Log("WinSequence started");
+        // yield return new WaitForSeconds(1f); 
+
+        Scene currentScene = SceneManager.GetActiveScene();
+
+        if (currentScene.buildIndex == 1) // if current is scene1
+        {
+            yield return new WaitForSeconds(4f); 
+            if (AudioManager.instance != null)
+            {
+                // AudioManager.instance.ambienceSource.Stop(); // Stop ambient sound if needed
+                AudioManager.instance.PlayAmbientSound(AudioManager.instance.ambientClip_Level2); // Play Level 2 ambient sound
+            }
+            if (SceneHandler.instance != null)
+            {
+                SceneHandler.instance.LoadLevel2Scene(); // load scene2
+            }
+            else
+            {
+                Debug.LogError("SceneHandler instance not found");
+            }
         }
-        yield return new WaitForSeconds(2f); // Brief delay to enjoy win moment
+        else if (currentScene.buildIndex == 2) // If current is scene2
+        {
+            if (SceneHandler.instance != null)
+            {
+                if (AudioManager.instance != null)
+                {
+                    AudioManager.instance.StopAmbientSound(); // Stop ambient sound if needed
+                    AudioManager.instance.PlaySound(AudioManager.instance.stageClearClip); // Play start sound
+                }
+                SceneHandler.instance.LoadWinScene(); // load the win scene
+            }
+            else
+            {
+                Debug.LogError("SceneHandler instance not found");
+            }
+
+            yield return new WaitForSeconds(10f);
 
             if (SceneHandler.instance != null)
+            {
+                SceneHandler.instance.LoadMenuScene(); // load the main menu
+            }
+            else
+            {
+                Debug.LogError("SceneHandler instance not found");
+            }
+        }
+        else
         {
-
-            SceneHandler.instance.LoadWinScene();
-
-
+            Debug.LogError("Unexpected scene index: " + currentScene.buildIndex);
         }
-        else {
-            Debug.LogError("SceneHandler instance not found");
         
-        }
-    
-    
-    
-    
     }
-
-
-
-
-
 
     public void QuitGame()
     {
