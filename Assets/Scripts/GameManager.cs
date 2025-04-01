@@ -79,6 +79,15 @@ public class GameManager : SingletonMonoBehavior<GameManager>
         {
             currentTime = 70f;
         }
+        else if (currentScene.buildIndex == 0)
+        {
+            isGameOver = true;
+        }
+        else
+        {
+            Debug.LogError("Unexpected scene index: " + currentScene.buildIndex);
+            return;
+        }
         UpdateTimerUI(); // Updates timer text on the screen
 
         Time.timeScale = 1f;
@@ -119,6 +128,7 @@ public class GameManager : SingletonMonoBehavior<GameManager>
 
     private void Update()
     {
+        Debug.Log("Update running. currentTime: " + currentTime + ", isGameOver: " + isGameOver);
         if (isGameOver)
         {
             return; // Stop all logic if the game is already over
@@ -134,6 +144,7 @@ public class GameManager : SingletonMonoBehavior<GameManager>
         if (currentTime <= 0 && !isSettingsMenuActive)
         {
             currentTime = 0;
+            Debug.Log("Calling OnCountdownEnd()");
             OnCountdownEnd();
         }
     }
