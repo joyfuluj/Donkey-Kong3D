@@ -55,7 +55,7 @@ public class GameManager : SingletonMonoBehavior<GameManager>
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
         Debug.Log("Scene Loaded: " + scene.name);
-
+        isTimerPaused = false;
         ReassignReferences();
         UpdateHeartsUI();
         if (gameOver != null)
@@ -63,8 +63,15 @@ public class GameManager : SingletonMonoBehavior<GameManager>
             gameOver.gameObject.SetActive(false);
         }
         isGameOver = false;
+        Scene currentScene = SceneManager.GetActiveScene();
 
-        currentTime = countdownTime;
+        if (currentScene.buildIndex == 1){
+            currentTime = 90f;
+        }
+        else if (currentScene.buildIndex == 2)
+        {
+            currentTime = 70f;
+        }
         UpdateTimerUI(); // Updates timer text on the screen
 
         Time.timeScale = 1f;
@@ -193,7 +200,7 @@ public class GameManager : SingletonMonoBehavior<GameManager>
         if (isGameOver) yield break; // Prevent multiple calls
         Debug.Log("GameOverSequence triggered");
         isGameOver = true; // Set the flag to true
-        PauseTimer();
+        // PauseTimer();
 
         if (AudioManager.instance != null)
         {
@@ -253,7 +260,7 @@ public class GameManager : SingletonMonoBehavior<GameManager>
 
     public void PauseTimer()
     {
-        isTimerPaused = true; // Pause the timer
+         isTimerPaused= true; // Pause the timer
         StartCoroutine(WinSequence()); // Trigger win sequence when timer is paused
     }
 
