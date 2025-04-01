@@ -243,6 +243,11 @@ public class GameManager : SingletonMonoBehavior<GameManager>
 
         if (currentScene.buildIndex == 1) // if current is scene1
         {
+            if (AudioManager.instance != null)
+            {
+                // AudioManager.instance.ambienceSource.Stop(); // Stop ambient sound if needed
+                AudioManager.instance.PlayAmbientSound(AudioManager.instance.ambientClip_Level2); // Play Level 2 ambient sound
+            }
             if (SceneHandler.instance != null)
             {
                 SceneHandler.instance.LoadLevel2Scene(); // load scene2
