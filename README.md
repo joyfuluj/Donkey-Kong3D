@@ -46,4 +46,20 @@
 
 ### Additional Contributions
 - **Created Victory Scene**  
-  🔗 [PR #22](https://github.com/NamanArora332/Donkey-Kong3D/pull/22)  
+  🔗 [PR #22](https://github.com/NamanArora332/Donkey-Kong3D/pull/22)
+
+  ### Jeena Javahar
+
+  ## Core Contributions
+
+  - **Implemented Ladder Movement**
+   🔗 [PR #7](https://github.com/NamanArora332/Donkey-Kong3D/pull/7)
+  - **Camera Shake**
+    🔗 [PR #13](https://github.com/NamanArora332/Donkey-Kong3D/pull/13)
+  - **Particle Effects**
+    🔗 [PR #21](https://github.com/NamanArora332/Donkey-Kong3D/pull/21)
+
+    ### Additional Contributions
+
+    - Fixed some persistent buggy issues that were stalling development
+    🔗 [PR #11](https://github.com/NamanArora332/Donkey-Kong3D/pull/11)
