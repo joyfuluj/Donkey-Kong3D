@@ -83,11 +83,7 @@ public class GameManager : SingletonMonoBehavior<GameManager>
         {
             isGameOver = true;
         }
-        else
-        {
-            Debug.LogError("Unexpected scene index: " + currentScene.buildIndex);
-            return;
-        }
+        
         UpdateTimerUI(); // Updates timer text on the screen
 
         Time.timeScale = 1f;
