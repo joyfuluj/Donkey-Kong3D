@@ -5,7 +5,7 @@ using UnityEngine;
 using TMPro;
 using System.Collections;
 using JetBrains.Annotations;
-
+using UnityEngine.SceneManagement;
 
 public class GameManager : SingletonMonoBehavior<GameManager>
 {
@@ -182,19 +182,19 @@ public class GameManager : SingletonMonoBehavior<GameManager>
         // Show the Game Over UI
         gameOver.gameObject.SetActive(true);
 
-        // Wait for 1.5 seconds
-        yield return new WaitForSecondsRealtime(1.5f);
+        // Wait for 4 seconds
+        yield return new WaitForSecondsRealtime(4f);
 
         // Unfreeze time and transition to the main menu
         Time.timeScale = 1f;
 
         // Handle Next Scene
         Debug.Log("Back to Main Menu");
-        // SceneHandler.Instance.LoadMenuScene();
+        SceneHandler.instance.LoadMenuScene();
 
-        // TODO: Back to main menu
-        yield return new WaitForSeconds(3f);
-        QuitGame();
+        // // TODO: Back to main menu
+        // yield return new WaitForSeconds(3f);
+        // QuitGame();
     }
 
     private void ToggleSettingsMenu()
@@ -235,36 +235,45 @@ public class GameManager : SingletonMonoBehavior<GameManager>
         StartCoroutine(WinSequence()); // Trigger win sequence when timer is paused
     }
 
-    private IEnumerator WinSequence() {
-        if (AudioManager.instance != null)
-        { 
-            AudioManager .instance .ambienceSource.Stop();
-            AudioManager.instance.PlaySound(AudioManager.instance.winClip);
-        
-        }
-        yield return new WaitForSeconds(2f); // Brief delay to enjoy win moment
+    private IEnumerator WinSequence()
+    {
+        // yield return new WaitForSeconds(1f); 
 
-            if (SceneHandler.instance != null)
+        Scene currentScene = SceneManager.GetActiveScene();
+
+        if (currentScene.buildIndex == 1) // if current is scene1
         {
-
-            SceneHandler.instance.LoadWinScene();
-
-
+            if (SceneHandler.instance != null)
+            {
+                SceneHandler.instance.LoadLevel2Scene(); // load scene2
+            }
+            else
+            {
+                Debug.LogError("SceneHandler instance not found");
+            }
         }
-        else {
-            Debug.LogError("SceneHandler instance not found");
-        
+        else if (currentScene.buildIndex == 2) // If current is scene2
+        {
+            if (SceneHandler.instance != null)
+            {
+                if (AudioManager.instance != null)
+                {
+                    AudioManager.instance.StopAmbientSound(); // Stop ambient sound if needed
+                    AudioManager.instance.PlaySound(AudioManager.instance.stageClearClip); // Play start sound
+                }
+                SceneHandler.instance.LoadWinScene(); // load the win scene
+            }
+            else
+            {
+                Debug.LogError("SceneHandler instance not found");
+            }
         }
-    
-    
-    
-    
+        else
+        {
+            Debug.LogError("Unexpected scene index: " + currentScene.buildIndex);
+        }
+        yield return new WaitForSeconds(1f);
     }
-
-
-
-
-
 
     public void QuitGame()
     {

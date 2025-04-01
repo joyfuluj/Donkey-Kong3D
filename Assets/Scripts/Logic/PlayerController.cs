@@ -91,12 +91,18 @@ public class PlayerController : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Ground"))
         {
-            Debug.Log("Grounded, can jump");
+            // Debug.Log("Grounded, can jump");
             isGrounded = true;
             animator.SetBool("isGrounded", true);
         }
         if (collision.gameObject.CompareTag("Peach"))
         {
+            if (AudioManager.instance != null)
+            { 
+                AudioManager .instance .ambienceSource.Stop();
+                AudioManager.instance.PlaySound(AudioManager.instance.winClip);
+            
+            }
             // Call the PauseTimer method in the GameManager
             GameManager.Instance.PauseTimer();
         }
@@ -107,7 +113,7 @@ public class PlayerController : MonoBehaviour
         if (collision.gameObject.CompareTag("Ground"))
         {
             Instantiate(runningDust, transform.position, Quaternion.identity);
-            Debug.Log("Not grounded, can't jump");
+            // Debug.Log("Not grounded, can't jump");
             isGrounded = false;
             animator.SetBool("isGrounded", false);
         }
@@ -131,12 +137,12 @@ public class PlayerController : MonoBehaviour
     }
     public void setLadder(Ladder ladder)
     {
-        Debug.Log("Ladder set ");
+        // Debug.Log("Ladder set ");
         this.ladder = ladder;
     }
     public void setCanClimb(bool canClimb)
     {
-        Debug.Log("Can climb set to " + canClimb);
+        // Debug.Log("Can climb set to " + canClimb);
         this.canClimb = canClimb;
     }
     public void climbUpLadder()
@@ -147,7 +153,7 @@ public class PlayerController : MonoBehaviour
             AudioManager.instance.sfxSource.PlayOneShot(AudioManager.instance.climbClip);
             StartCoroutine(ResetClimbingSoundFlag(AudioManager.instance.climbClip.length)); // Reset flag after sound finishes
         }
-        Debug.Log("Climbing up ladder");
+        // Debug.Log("Climbing up ladder");
         Transform upPosition = ladder.top;
         this.transform.position = upPosition.position;
     }
@@ -159,7 +165,7 @@ public class PlayerController : MonoBehaviour
             AudioManager.instance.sfxSource.PlayOneShot(AudioManager.instance.climbClip);
             StartCoroutine(ResetClimbingSoundFlag(AudioManager.instance.climbClip.length)); // Reset flag after sound finishes
         }
-        Debug.Log("Climbing down ladder");
+        // Debug.Log("Climbing down ladder");
         Transform downPosition = ladder.bottom;
         this.transform.position = downPosition.position;
     }

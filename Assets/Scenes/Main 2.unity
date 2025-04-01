@@ -7495,6 +7495,7 @@ MonoBehaviour:
   winClip: {fileID: 8300000, guid: e557ba6146b124ce0a16d1c4c55dacd4, type: 3}
   gameOverClip: {fileID: 8300000, guid: daac9b935ac344969b10596f8c016a30, type: 3}
   stageClearClip: {fileID: 8300000, guid: 1ccaaab075f5a452885d016e3dc08578, type: 3}
+  gameStartClip: {fileID: 8300000, guid: 3a19a7f1b88954c3188a75156216fec4, type: 3}
   pauseClip: {fileID: 8300000, guid: cc1b2ec68674644bc97718d621c276ba, type: 3}
   kongClip: {fileID: 8300000, guid: e4e998d4dc6ac47fe874c2b98c35eaa4, type: 3}
   climbClip: {fileID: 8300000, guid: 202c1fe239fbb4b5fae05c203e8bdcc7, type: 3}

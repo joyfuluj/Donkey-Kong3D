@@ -11,7 +11,7 @@ public class FloorJumpPowerUp : MonoBehaviour
         // Check if the object that entered the trigger is Mario
         if (other.gameObject.CompareTag("Mario"))
         {
-            Debug.Log("Floor Jump Power-Up collected by Mario!");
+            // Debug.Log("Floor Jump Power-Up collected by Mario!");
 
             // Get the PlayerController component to access Mario's functionality
             PlayerController player = other.gameObject.GetComponent<PlayerController>();
@@ -40,7 +40,7 @@ public class FloorJumpPowerUp : MonoBehaviour
 
         if (floors.Length == 0)
         {
-            Debug.LogWarning("No floors found with tag 'Ground'!");
+            // Debug.LogWarning("No floors found with tag 'Ground'!");
             return;
         }
 
@@ -82,7 +82,7 @@ public class FloorJumpPowerUp : MonoBehaviour
 
             // Teleport Mario to the target position
             player.transform.position = targetPosition;
-            Debug.Log($"Teleported Mario to floor at Position: {targetPosition}");
+            // Debug.Log($"Teleported Mario to floor at Position: {targetPosition}");
         }
         else
         {

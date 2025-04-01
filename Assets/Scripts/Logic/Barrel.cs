@@ -23,7 +23,7 @@ public class Barrel : MonoBehaviour
         // Check if the collided object is tagged as "SideWall"
         if (collision.gameObject.CompareTag("SideWall") && !isRolling)
         {
-            Debug.Log("Barrel collided with the Wall. Rolling forward...");
+            // Debug.Log("Barrel collided with the Wall. Rolling forward...");
             RestoreFullMovement();
 
             // Start rolling the barrel forward
@@ -91,7 +91,7 @@ public class Barrel : MonoBehaviour
             yield return null; // Wait until the next frame
         }
 
-        Debug.Log("Stopping barrel's rolling motion...");
+        // Debug.Log("Stopping barrel's rolling motion...");
         isRolling = false; // Reset the rolling flag
     }
 }
