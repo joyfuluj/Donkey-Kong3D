@@ -35,8 +35,10 @@ public class GameManager : SingletonMonoBehavior<GameManager>
     protected override void Awake()
     {
         base.Awake();
+        DontDestroyOnLoad(gameObject);
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
+        DontDestroyOnLoad(settingsMenu);
         inputManager.OnSettingsMenu.AddListener(ToggleSettingsMenu);
         // the game starts with the settings menu disabled
         DisableSettingsMenu();
@@ -67,6 +69,7 @@ public class GameManager : SingletonMonoBehavior<GameManager>
         //Update the array of hearts
         UpdateHeartsUI();
         gameOver.gameObject.SetActive(false); // Hide the Game Over text initially
+        isGameOver = false;
 
         currentTime = countdownTime;
         UpdateTimerUI(); //Updates timer text on the screen
@@ -168,6 +171,7 @@ public class GameManager : SingletonMonoBehavior<GameManager>
     private IEnumerator GameOverSequence()
     {
         if (isGameOver) yield break; // Prevent multiple calls
+        Debug.Log("GameOverSequence triggered");
         isGameOver = true; // Set the flag to true
         PauseTimer();
 
@@ -222,6 +226,8 @@ public class GameManager : SingletonMonoBehavior<GameManager>
 
     public void DisableSettingsMenu()
     {
+        
+        AudioManager.instance.ambienceSource.Play();      
         Time.timeScale = 1f;
         settingsMenu.SetActive(false);
         Cursor.lockState = CursorLockMode.Locked;
@@ -237,6 +243,7 @@ public class GameManager : SingletonMonoBehavior<GameManager>
 
     private IEnumerator WinSequence()
     {
+        Debug.Log("WinSequence started");
         // yield return new WaitForSeconds(1f); 
 
         Scene currentScene = SceneManager.GetActiveScene();

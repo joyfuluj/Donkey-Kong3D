@@ -15,7 +15,7 @@ public class Coins : MonoBehaviour
     }
     void OnTriggerEnter(Collider other)
     {
-        Debug.Log("Trigger");
+        // Debug.Log("Trigger");
         if (other.gameObject.CompareTag("Mario"))
         {
             // end after 2 seconds
