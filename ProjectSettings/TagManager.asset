@@ -14,6 +14,10 @@ TagManager:
   - Peach
   - FxTemporaire
   - Kong
+  - GameOverText
+  - Heart
+  - ScoreText
+  - TimerText
   layers:
   - Default
   - TransparentFX

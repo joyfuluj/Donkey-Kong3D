@@ -36,18 +36,48 @@ public class GameManager : SingletonMonoBehavior<GameManager>
     {
         base.Awake();
         DontDestroyOnLoad(gameObject);
+        DontDestroyOnLoad(settingsMenu);
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
-        DontDestroyOnLoad(settingsMenu);
         inputManager.OnSettingsMenu.AddListener(ToggleSettingsMenu);
-        // the game starts with the settings menu disabled
         DisableSettingsMenu();
+        UpdateScoreUI();
+        UpdateTimerUI();
+
+        SceneManager.sceneLoaded += OnSceneLoaded;
     }
 
-
-    void Start()
+    private void OnDestroy()
     {
-        UpdateScoreUI();
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
+
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        Debug.Log("Scene Loaded: " + scene.name);
+
+        ReassignReferences();
+        UpdateHeartsUI();
+        if (gameOver != null)
+        {
+            gameOver.gameObject.SetActive(false);
+        }
+        isGameOver = false;
+
+        currentTime = countdownTime;
+        UpdateTimerUI(); // Updates timer text on the screen
+
+        Time.timeScale = 1f;
+    }
+
+    private void ReassignReferences()
+    {
+        hearts = GameObject.FindGameObjectsWithTag("Heart");
+        gameOver = GameObject.FindWithTag("GameOverText")?.GetComponent<TextMeshProUGUI>();
+        scoreText = GameObject.FindWithTag("ScoreText")?.GetComponent<TextMeshProUGUI>();
+        timerText = GameObject.FindWithTag("TimerText")?.GetComponent<TextMeshProUGUI>();
+        mario = GameObject.FindWithTag("Mario")?.GetComponent<PlayerController>();
+        barrel = GameObject.FindWithTag("Barrel")?.GetComponent<Barrel>();
     }
 
     void UpdateScoreUI()
@@ -64,16 +94,6 @@ public class GameManager : SingletonMonoBehavior<GameManager>
         UpdateScoreUI();
     }
 
-    private void OnEnable()
-    {
-        //Update the array of hearts
-        UpdateHeartsUI();
-        gameOver.gameObject.SetActive(false); // Hide the Game Over text initially
-        isGameOver = false;
-
-        currentTime = countdownTime;
-        UpdateTimerUI(); //Updates timer text on the screen
-    }
     public bool getMarioBig()
     {
         return isMarioBig;
@@ -195,10 +215,6 @@ public class GameManager : SingletonMonoBehavior<GameManager>
         // Handle Next Scene
         Debug.Log("Back to Main Menu");
         SceneHandler.instance.LoadMenuScene();
-
-        // // TODO: Back to main menu
-        // yield return new WaitForSeconds(3f);
-        // QuitGame();
     }
 
     private void ToggleSettingsMenu()

@@ -287,7 +287,7 @@ GameObject:
   - component: {fileID: 113909257}
   m_Layer: 5
   m_Name: GameOver
-  m_TagString: Untagged
+  m_TagString: GameOverText
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -774,7 +774,7 @@ GameObject:
   - component: {fileID: 405566072}
   m_Layer: 5
   m_Name: Timer
-  m_TagString: Untagged
+  m_TagString: TimerText
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3689,7 +3689,7 @@ GameObject:
   - component: {fileID: 1443687300}
   m_Layer: 5
   m_Name: Heart
-  m_TagString: Untagged
+  m_TagString: Heart
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3833,7 +3833,7 @@ GameObject:
   - component: {fileID: 1492323989}
   m_Layer: 5
   m_Name: Coin
-  m_TagString: Untagged
+  m_TagString: ScoreText
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4651,7 +4651,7 @@ GameObject:
   - component: {fileID: 1524192624}
   m_Layer: 5
   m_Name: Heart (2)
-  m_TagString: Untagged
+  m_TagString: Heart
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5323,7 +5323,7 @@ GameObject:
   - component: {fileID: 1825440256}
   m_Layer: 5
   m_Name: Heart (1)
-  m_TagString: Untagged
+  m_TagString: Heart
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
