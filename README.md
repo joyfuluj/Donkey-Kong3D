@@ -1,3 +1,8 @@
+# Donkey Kong 3D
+[GDD Final Documentaton](https://docs.google.com/document/d/1l9OrBGuGVYbwihyXe7x-g60jM9gm9j64HpmdHLdE-Yo/edit?tab=t.0#heading=h.nr262ujk1bmi)
+
+[Figma Prototype](https://www.figma.com/design/fu9dyBTi70gdVvfeMDEKKT/Donkey-Kong?node-id=29-18&p=f&t=QaKka82CE67FH6ib-0)
+
 # Team Contributions Videos
 
 ### Joy Umejiego
@@ -20,3 +25,25 @@
 
 - **Implemented the Pause Menu**  
   🔗 [PR #17](https://github.com/NamanArora332/Donkey-Kong3D/pull/17)  
+
+### Oluwadabira Omotoso
+
+## Core Contributions
+- **Created Donkey Kong and Handled Barrel picking and throwing**  
+  🔗 [PR #3](https://github.com/NamanArora332/Donkey-Kong3D/pull/3)
+  🔗 [PR #5](https://github.com/NamanArora332/Donkey-Kong3D/pull/5)
+
+- **Designed the UI Elements: lives,game over, timer, and coin**  
+  🔗 [PR #8](https://github.com/NamanArora332/Donkey-Kong3D/pull/8)
+  🔗 [PR #10](https://github.com/NamanArora332/Donkey-Kong3D/pull/10) 
+
+- **Added material assets and animations**
+  🔗 [PR #15](https://github.com/NamanArora332/Donkey-Kong3D/pull/15)
+  🔗 [PR #20](https://github.com/NamanArora332/Donkey-Kong3D/pull/20)
+  
+   [![Watch Video](<img width="1293" alt="Screenshot 2025-03-31 at 2 13 44 PM" src="https://github.com/user-attachments/assets/ed68860b-9a00-4cbf-8d4f-b691787331ba" />
+)](https://youtu.be/p5u_71LsAnw)
+
+### Additional Contributions
+- **Created Victory Scene**  
+  🔗 [PR #22](https://github.com/NamanArora332/Donkey-Kong3D/pull/22)  
