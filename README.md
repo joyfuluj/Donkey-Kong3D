@@ -68,3 +68,22 @@
 
 https://github.com/user-attachments/assets/075c2a69-c23e-4630-9128-eedc107a2549
 
+### Naman Arora
+## Core Contributions
+
+- **Implement Mario Movement Mechanism**
+  https://youtu.be/Vv69XzHUweY [PR #4](https://github.com/NamanArora332/Donkey-Kong3D/pull/4)
+- **Implement Jump Power Up**
+  [PR #12](https://github.com/NamanArora332/Donkey-Kong3D/pull/12)
+- ** Implement Scene Handler**
+  https://youtu.be/_9ycmvZc9T8 [PR #23](https://github.com/NamanArora332/Donkey-Kong3D/pull/23)
+
+### Additional Contributions
+- Fixed bug when mario could not jump when came down ladder
+  [PR #14] (https://github.com/NamanArora332/Donkey-Kong3D/pull/14)
+
+
+  
+  
+
+
