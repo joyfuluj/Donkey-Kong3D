@@ -1,11 +1,14 @@
 # Donkey Kong 3D
-[Demo](https://youtu.be/XqkKfywPNsw)
 
-[Play the Game👾🎮](https://joyfuluj.itch.io/donkeykong-3d)
+Watch Me! 👉 [Demo](https://youtu.be/XqkKfywPNsw)
+
+Play Me! 👉 [Game👾🎮](https://joyfuluj.itch.io/donkeykong-3d)
 
 [GDD Final Documentaton](https://docs.google.com/document/d/1l9OrBGuGVYbwihyXe7x-g60jM9gm9j64HpmdHLdE-Yo/edit?tab=t.0#heading=h.nr262ujk1bmi)
 
 [Figma Prototype](https://www.figma.com/design/fu9dyBTi70gdVvfeMDEKKT/Donkey-Kong?node-id=29-18&p=f&t=QaKka82CE67FH6ib-0)
+
+![Image](https://github.com/user-attachments/assets/16a3a0da-2d88-4f95-82d3-cb77704e9321)
 
 # Team Contributions Videos
 
